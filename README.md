@@ -1,4 +1,4 @@
-# Cycle Mate || Enjoying our love for cycling together 
+# Cycle Mate 🚲 Enjoying our love for cycling together 
 
 ## Todo: Link to deployed app
 
