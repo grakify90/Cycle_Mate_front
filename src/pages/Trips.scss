@@ -1,0 +1,52 @@
+.tripsContainer {
+  width: 60vw;
+  margin: 0 auto;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  border: 1px solid black;
+  align-items: center;
+  padding: 2vw;
+  box-shadow: 10px 10px 0px 1px rgba(0, 0, 0, 0.75);
+  margin: 4vh 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.container:hover {
+  transform: scale(1.07);
+}
+
+.innerContainer1 {
+  display: flex;
+  flex-direction: column;
+}
+
+.tripsdate {
+  color: #ffffff;
+  background-color: #36622b;
+  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
+  line-height: 70%;
+  justify-content: center;
+  height: 110px;
+  width: 110px;
+}
+
+@media screen and (max-width: 600px) {
+  .tripsContainer {
+    width: 100vw;
+  }
+  .container {
+    box-shadow: none;
+    transition: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .tripsContainer {
+    width: 40vw;
+  }
+}
