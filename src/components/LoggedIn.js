@@ -8,8 +8,10 @@ export default function LoggedIn() {
   const user = useSelector(selectUser);
   return (
     <>
-      <div style={{ padding: ".5rem 1rem" }}>{user.email}</div>
-      <button onClick={() => dispatch(logOut())}>Log out</button>
+      {/* <div style={{ padding: ".5rem 1rem" }}>{user.email}</div> */}
+      <button className="logButton" onClick={() => dispatch(logOut())}>
+        Log out, {user.firstName}
+      </button>
     </>
   );
 }
