@@ -12,10 +12,10 @@ export const fetchOne = (trip, organizer, participants) => {
   };
 };
 
-export const addBid = (bid) => {
+export const addNewParticipant = (participant) => {
   return {
     type: ADD_PARTICIPANT,
-    payload: bid,
+    payload: participant,
   };
 };
 
@@ -38,26 +38,19 @@ export function fetchOneTrip(tripId) {
   };
 }
 
-// export function addParticipant(tripId) {
-//   return async function thunk(dispatch) {
-//     try {
-//       dispatch(startLoading());
-//       const token = localStorage.getItem("token");
-//       const response = await axios.get(`${apiUrl}/me`, {
-//         headers: { Authorization: `Bearer ${token}` },
-//       });
-//       const myEmail = response.data.email;
-//       const data = await axios.post(
-//         `${apiUrl}/bids/${artworkId}`,
-//         {
-//           email: myEmail,
-//           bid: newBid,
-//         },
-//         { headers: { Authorization: `Bearer ${token}` } }
-//       );
-//       dispatch(addBid(data.data));
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-// }
+export function addParticipant(tripId) {
+  return async function thunk(dispatch) {
+    try {
+      dispatch(startLoading());
+      const token = localStorage.getItem("token");
+      console.log(token);
+      const data = await axios.post(`${apiUrl}/participants/${tripId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(data.data);
+      dispatch(addNewParticipant(data.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}

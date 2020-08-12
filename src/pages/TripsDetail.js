@@ -3,7 +3,7 @@ import "./TripsDetail.scss";
 import moment from "moment";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOneTrip } from "../store/oneTrip/actions";
+import { fetchOneTrip, addParticipant } from "../store/oneTrip/actions";
 import { selectTripData } from "../store/oneTrip/selectors";
 
 export default function AllArtworks() {
@@ -14,6 +14,10 @@ export default function AllArtworks() {
   useEffect(() => {
     dispatch(fetchOneTrip(id));
   }, [dispatch, id]);
+
+  const joinOrUnjoin = () => {
+    dispatch(addParticipant(id));
+  };
 
   const tripData = useSelector(selectTripData);
 
@@ -73,7 +77,7 @@ export default function AllArtworks() {
             );
           })}
           <div className="joinTripButton">
-            <button>Join this trip!</button>
+            <button onClick={joinOrUnjoin}>Join this trip!</button>
           </div>
         </div>
       </div>
