@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
+import "./NavBar.scss";
 
 export default function NavBar() {
   const token = useSelector(selectToken);
@@ -11,10 +12,25 @@ export default function NavBar() {
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 
   return (
-    <div>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/agenda">Agenda</NavLink>
+    <>
       {loginLogoutControls}
-    </div>
+      <div className="navbarContainer">
+        <NavLink
+          className="navbarItem"
+          activeClassName="activeLink"
+          exact
+          to="/"
+        >
+          Home
+        </NavLink>
+        <NavLink
+          className="navbarItem"
+          activeClassName="activeLink"
+          to="/agenda"
+        >
+          Agenda
+        </NavLink>
+      </div>
+    </>
   );
 }

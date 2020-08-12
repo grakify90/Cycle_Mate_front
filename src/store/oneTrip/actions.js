@@ -43,10 +43,13 @@ export function addParticipant(tripId) {
     try {
       dispatch(startLoading());
       const token = localStorage.getItem("token");
-      console.log(token);
-      const data = await axios.post(`${apiUrl}/participants/${tripId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const data = await axios.post(
+        `${apiUrl}/participants/${tripId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       console.log(data.data);
       dispatch(addNewParticipant(data.data));
     } catch (error) {

@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <div className="Home">
       <h1>Welcome to Cycle Mate</h1>
-      <h2>What are we about?</h2>
       <p>
         Cycle Mate is the perfect platform for cycle lovers who enjoy practising
         their favourite sport together with other people. Ever wanted to
