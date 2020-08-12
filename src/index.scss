@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Cardo&family=Hind+Madurai&family=Rock+Salt&display=swap");
 
+//#fbfad3
+//#c6e377
+//#729d39
+//#36622b
+
 body {
   margin: 0;
   font-family: "Hind Madurai", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 }
 
 h1 {
@@ -14,4 +20,31 @@ h1 {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+button {
+  color: #494949 !important;
+  font-family: "Hind Madurai", sans-serif !important;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 10px;
+  border: 3px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+button:hover {
+  color: #ffffff !important;
+  background: #729d39;
+  border-color: #729d39 !important;
+  transition: all 0.4s ease 0s;
+}
+
+@media screen and (max-width: 600px) {
+  button {
+    background: #729d39;
+    color: #ffffff !important;
+  }
 }
