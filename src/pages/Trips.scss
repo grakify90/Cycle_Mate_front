@@ -41,7 +41,9 @@
   }
   .container {
     box-shadow: none;
-    transition: none;
+  }
+  .container:hover {
+    transform: none;
   }
 }
 

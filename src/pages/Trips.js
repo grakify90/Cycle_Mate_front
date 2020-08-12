@@ -37,7 +37,7 @@ export default function Trips() {
                 Capacity: {trip.participant.length}/{trip.numPeopleAllowed}
               </p>
             </div>
-            <Link className="tripButton" to={`/agenda/${trip.id}`}>
+            <Link className="tripButton" to={`/detail/${trip.id}`}>
               <button>See details</button>
             </Link>
           </div>
