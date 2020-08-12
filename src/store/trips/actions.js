@@ -50,7 +50,6 @@ export function fetchTrips() {
     try {
       dispatch(startLoading());
       const data = await axios.get(`${apiUrl}/trips`);
-      console.log(data.data);
       dispatch(fetchAllTrips(data.data));
     } catch (error) {
       console.log(error.message);

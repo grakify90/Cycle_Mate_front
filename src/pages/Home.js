@@ -7,14 +7,13 @@ export default function Home() {
       <h1>Welcome to Cycle Mate</h1>
       <h2>What are we about?</h2>
       <p>
-        I’m recently re-learning React framework as it was 3years ago since the
-        last time I use React for a production application. In the midst of
-        rewriting my Github Pages with React which I previously created using
-        raw HTML and CSS only, I encountered a problem where I want to implement
-        Google Font — Source Sans Pro in my application. After some delving
-        using Google and StackOverflow, I found some of the answers are either
-        complicated or out-of-date. Thus, this article will show you how to
-        configure and use Google Font with just two lines of code.
+        Cycle Mate is the perfect platform for cycle lovers who enjoy practising
+        their favourite sport together with other people. Ever wanted to
+        organize a cycle trip and make it possible for anyone to join, just for
+        the fun of riding together? Cycle Mate is your new best mate! Organize
+        cycle trips, join other people's trips, take part in the Cycle Mate
+        community and ask questions or share your experiences on the message
+        board... Anything to spread the love for cycling!
       </p>
       <img
         src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/05/11/18/cycling-guide.jpg?w=990"
