@@ -1,0 +1,21 @@
+.formContainer {
+  width: 400px;
+  margin: 0 auto 30px auto;
+}
+
+.formItemContainer {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    font-family: "Courier New", Courier, monospace;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .formContainer {
+    width: 350px;
+    padding: 0 5px;
+  }
+}
