@@ -10,6 +10,7 @@ import Trips from "./pages/Trips";
 import TripsDetail from "./pages/TripsDetail";
 import Community from "./pages/Community";
 import CommunityDetail from "./pages/CommunityDetail";
+import ManageAccount from "./pages/ManageAccount";
 
 import { useDispatch, useSelector } from "react-redux";
 import { selectAppLoading } from "./store/appState/selectors";
@@ -36,6 +37,7 @@ function App() {
         <Route path="/mypage" component={MyPage} />
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
+        <Route path="/manageaccount" component={ManageAccount} />
       </Switch>
     </div>
   );
