@@ -30,6 +30,13 @@ export default function NavBar() {
         >
           Agenda
         </NavLink>
+        <NavLink
+          className="navbarItem"
+          activeClassName="activeLink"
+          to="/community"
+        >
+          Community
+        </NavLink>
       </div>
     </>
   );

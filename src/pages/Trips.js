@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "./Trips.scss";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTrips } from "../store/trips/actions";
 import { selectTrips, selectTripsLoading } from "../store/trips/selectors";
+import TripCard from "../components/TripCard";
 
 export default function Trips() {
   const dispatch = useDispatch();
@@ -21,26 +21,20 @@ export default function Trips() {
 
   return (
     <div className="tripsContainer">
-      {allTrips.map((trip) => {
+      {allTrips.map((trip, index) => {
         return (
-          <div className="container" key={Math.random()}>
-            <div className="tripsdate">
-              <p>{trip.date}</p>
-              <p>{trip.startingTime}</p>
-            </div>
-            <div className="innerContainer1">
-              {" "}
-              <p>
-                {trip.locationCity} ({trip.locationProvince}) {trip.lengthKM}km
-              </p>
-              <p>
-                Capacity: {trip.participant.length}/{trip.numPeopleAllowed}
-              </p>
-            </div>
-            <Link className="tripButton" to={`/detail/${trip.id}`}>
-              <button>See details</button>
-            </Link>
-          </div>
+          <TripCard
+            key={index}
+            id={trip.id}
+            title={trip.title}
+            date={trip.date}
+            startingTime={trip.startingTime}
+            locationCity={trip.locationCity}
+            locationProvince={trip.locationProvince}
+            lengthKM={trip.lengthKM}
+            participantLength={trip.participant.length}
+            numPeopleAllowed={trip.numPeopleAllowed}
+          />
         );
       })}
     </div>
