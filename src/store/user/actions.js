@@ -26,6 +26,51 @@ const tokenStillValid = (userWithoutToken) => ({
 
 export const logOut = () => ({ type: LOG_OUT });
 
+export const changePersonalData = (
+  firstName,
+  lastName,
+  email,
+  password,
+  aboutMe,
+  gender,
+  dateOfBirth
+) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    const token = selectToken(getState());
+    if (token === null) return;
+    try {
+      console.log("lets do it");
+      const response = await axios.patch(
+        `${apiUrl}/update`,
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+          aboutMe,
+          gender,
+          dateOfBirth,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      dispatch(loginSuccess(response.data));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+        dispatch(setMessage("danger", true, error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setMessage("danger", true, error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
 export const signUp = (
   firstName,
   lastName,

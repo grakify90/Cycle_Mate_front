@@ -1,18 +1,27 @@
 import React from "react";
 import "./MyPage.scss";
+import Home from "./Home";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectUser } from "../store/user/selectors";
+import { selectUser, selectToken } from "../store/user/selectors";
 
 export default function Reply(props) {
   const user = useSelector(selectUser);
-  return (
-    <div className="mypageContainer">
-      <div className="mypageDetailContainer">
-        <h1>{user.firstName}'s Cycle Mate</h1>
-        <button className="actionButton">Manage my account</button>
-        <button className="actionButton">Organize a new trip</button>
-        <button className="actionButton">My cycle agenda</button>
+  const token = useSelector(selectToken);
+
+  if (token) {
+    return (
+      <div className="mypageContainer">
+        <div className="mypageDetailContainer">
+          <h1>{user.firstName}'s Cycle Mate</h1>
+          <Link to="/manageaccount">
+            <button className="actionButton">Manage my account</button>
+          </Link>
+          <button className="actionButton">Organize a new trip</button>
+          <button className="actionButton">My cycle agenda</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  return <Home />;
 }
