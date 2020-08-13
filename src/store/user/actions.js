@@ -40,7 +40,6 @@ export const changePersonalData = (
     const token = selectToken(getState());
     if (token === null) return;
     try {
-      console.log("lets do it");
       const response = await axios.patch(
         `${apiUrl}/update`,
         {
