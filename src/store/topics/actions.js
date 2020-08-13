@@ -50,7 +50,6 @@ export function fetchTopics() {
     try {
       dispatch(startLoading());
       const data = await axios.get(`${apiUrl}/topics`);
-      console.log(data.data);
       dispatch(fetchAllTopics(data.data));
     } catch (error) {
       console.log(error.message);
