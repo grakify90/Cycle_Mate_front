@@ -3,8 +3,9 @@ import "./TripsDetail.scss";
 import moment from "moment";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchOneTrip, addParticipant } from "../store/oneTrip/actions";
+import { fetchOneTrip, changeParticipant } from "../store/oneTrip/actions";
 import { selectTripData } from "../store/oneTrip/selectors";
+import { selectUser } from "../store/user/selectors";
 
 export default function TripsDetail() {
   const { tripId } = useParams();
@@ -15,15 +16,20 @@ export default function TripsDetail() {
     dispatch(fetchOneTrip(id));
   }, [dispatch, id]);
 
+  const tripData = useSelector(selectTripData);
+  const user = useSelector(selectUser);
+
   const joinOrUnjoin = () => {
-    dispatch(addParticipant(id));
+    dispatch(changeParticipant(id, user));
   };
 
-  const tripData = useSelector(selectTripData);
-
   if (!tripData) {
-    return <h1>Loading...</h1>;
+    return <h1></h1>;
   }
+
+  const alreadyParticipant = tripData.participants.find((participant) => {
+    return user.id === participant.id;
+  });
 
   return (
     <div>
@@ -76,9 +82,15 @@ export default function TripsDetail() {
               </div>
             );
           })}
-          <div className="joinTripButton">
-            <button onClick={joinOrUnjoin}>Join this trip!</button>
-          </div>
+          {tripData.organizer.id === user.id ? (
+            <div></div>
+          ) : (
+            <div className="joinTripButton">
+              <button onClick={joinOrUnjoin}>
+                {alreadyParticipant ? "Unjoin trip" : "Join this trip!"}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

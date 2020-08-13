@@ -16,6 +16,7 @@ export default function CommunityDetail() {
     dispatch(fetchOneTopic(id));
   }, [dispatch, id]);
 
+  //Make this work
   const createReply = () => {
     dispatch(addReply(id));
   };
@@ -23,7 +24,7 @@ export default function CommunityDetail() {
   const topicData = useSelector(selectTopicData);
 
   if (!topicData) {
-    return <h1>Loading...</h1>;
+    return <h1></h1>;
   }
 
   return (

@@ -1,4 +1,9 @@
-import { FETCHED_ONE_TRIP, START_LOADING, ADD_PARTICIPANT } from "./actions";
+import {
+  FETCHED_ONE_TRIP,
+  START_LOADING,
+  ADD_PARTICIPANT,
+  DELETE_PARTICIPANT,
+} from "./actions";
 
 const initialState = {
   loading: false,
@@ -23,6 +28,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         participants: [...state.participants, action.payload],
+        loading: false,
+      };
+    }
+    case DELETE_PARTICIPANT: {
+      const newArray = state.participants;
+      newArray.splice(action.payload);
+      return {
+        ...state,
+        participants: newArray,
+        loading: false,
       };
     }
     case START_LOADING: {
