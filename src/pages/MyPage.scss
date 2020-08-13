@@ -1,0 +1,32 @@
+.mypageContainer {
+  text-align: center;
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.mypageDetailContainer {
+  display: grid;
+  background-color: #c3aed6;
+  color: #ffffff;
+  border-radius: 5px;
+  padding: 2vw;
+}
+
+.actionButton {
+  margin: 20px auto;
+}
+
+@media screen and (max-width: 600px) {
+  .mypageContainer {
+    width: 100vw;
+  }
+  .mypageDetailContainer {
+    padding: 6vw;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .mypageContainer {
+    width: 30vw;
+  }
+}
