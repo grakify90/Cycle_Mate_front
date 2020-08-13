@@ -1,20 +1,20 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 
-export const FETCHED_TRIPS = "FETCHED_TRIPS";
+export const FETCHED_TOPICS = "FETCHED_TOPICS";
 export const START_LOADING = "START_LOADING";
-export const ADD_TRIP = "ADD_TRIP";
+export const ADD_TOPIC = "ADD_TOPIC";
 
-export const fetchAllTrips = (trips) => {
+export const fetchAllTopics = (topics) => {
   return {
-    type: FETCHED_TRIPS,
-    payload: trips,
+    type: FETCHED_TOPICS,
+    payload: topics,
   };
 };
 
-export const addNewTrip = (trip) => {
+export const addNewTopic = (trip) => {
   return {
-    type: ADD_TRIP,
+    type: ADD_TOPIC,
     payload: trip,
   };
 };
@@ -25,11 +25,11 @@ export function startLoading() {
   };
 }
 
-// export function addTrip(newTrip) {
+// export function addTopic(newTopic) {
 //   return async function thunk(dispatch) {
 //     try {
 //       dispatch(startLoading());
-//       const { title, minBid, imageUrl } = newTrip;
+//       const { title, minBid, imageUrl } = newTopic;
 //       const token = localStorage.getItem("token");
 //       const tripFromAPI = await axios.post(
 //         `${apiUrl}/trips`,
@@ -38,19 +38,20 @@ export function startLoading() {
 //           headers: { Authorization: `Bearer ${token}` },
 //         }
 //       );
-//       dispatch(addNewTrip(tripFromAPI.data));
+//       dispatch(addNewTopic(tripFromAPI.data));
 //     } catch (error) {
 //       console.log(error.message);
 //     }
 //   };
 // }
 
-export function fetchTrips() {
+export function fetchTopics() {
   return async function thunk(dispatch) {
     try {
       dispatch(startLoading());
-      const data = await axios.get(`${apiUrl}/trips`);
-      dispatch(fetchAllTrips(data.data));
+      const data = await axios.get(`${apiUrl}/topics`);
+      console.log(data.data);
+      dispatch(fetchAllTopics(data.data));
     } catch (error) {
       console.log(error.message);
     }

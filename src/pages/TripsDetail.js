@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOneTrip, addParticipant } from "../store/oneTrip/actions";
 import { selectTripData } from "../store/oneTrip/selectors";
 
-export default function AllArtworks() {
+export default function TripsDetail() {
   const { tripId } = useParams();
   const id = parseInt(tripId);
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ export default function AllArtworks() {
   return (
     <div>
       {" "}
-      <h1>Trip details</h1>{" "}
+      <h1>{tripData.item.title}</h1>{" "}
       <div className="tripContainer">
         <div className="tripDetailContainer">
           <p>

@@ -1,16 +1,16 @@
-.tripsContainer {
+.topicsContainer {
   width: 60vw;
   margin: 0 auto;
 }
 
 @media screen and (max-width: 600px) {
-  .tripsContainer {
+  .topicsContainer {
     width: 100vw;
   }
 }
 
 @media screen and (min-width: 1200px) {
-  .tripsContainer {
+  .topicsContainer {
     width: 40vw;
   }
 }
