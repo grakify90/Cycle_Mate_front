@@ -8,7 +8,7 @@ export default function ManageAccount() {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState(user.password);
+  // const [password, setPassword] = useState(user.password);
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const [gender, setGender] = useState(user.gender);
   const [dateOfBirth, setDateOfBirth] = useState(user.dateOfBirth);
@@ -22,7 +22,6 @@ export default function ManageAccount() {
         firstName,
         lastName,
         email,
-        password,
         aboutMe,
         gender,
         dateOfBirth

@@ -2,12 +2,30 @@ import { apiUrl } from "../../config/constants";
 import axios from "axios";
 
 export const FETCHED_TRIPS = "FETCHED_TRIPS";
+export const FETCHED_PERSONAL_TRIPS = "FETCHED_PERSONAL_TRIPS";
 export const START_LOADING = "START_LOADING";
 export const ADD_TRIP = "ADD_TRIP";
+
+const compare = (a, b) => {
+  if (a.date > b.date) {
+    return -1;
+  }
+  if (a.date < b.date) {
+    return 1;
+  }
+  return 0;
+};
 
 export const fetchAllTrips = (trips) => {
   return {
     type: FETCHED_TRIPS,
+    payload: trips,
+  };
+};
+
+export const fetchPersonalTrips = (trips) => {
+  return {
+    type: FETCHED_PERSONAL_TRIPS,
     payload: trips,
   };
 };
@@ -74,7 +92,23 @@ export function fetchTrips() {
     try {
       dispatch(startLoading());
       const data = await axios.get(`${apiUrl}/trips`);
-      dispatch(fetchAllTrips(data.data));
+      const dataSortedByNewestFirst = data.data.sort(compare);
+      dispatch(fetchAllTrips(dataSortedByNewestFirst));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+export function fetchTripsUser() {
+  return async function thunk(dispatch) {
+    try {
+      dispatch(startLoading());
+      const token = localStorage.getItem("token");
+      const data = await axios.get(`${apiUrl}/trips/oneuser`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const dataSortedByNewestFirst = data.data.sort(compare);
+      dispatch(fetchPersonalTrips(dataSortedByNewestFirst));
     } catch (error) {
       console.log(error.message);
     }

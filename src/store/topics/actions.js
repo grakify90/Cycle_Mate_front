@@ -5,6 +5,16 @@ export const FETCHED_TOPICS = "FETCHED_TOPICS";
 export const START_LOADING = "START_LOADING";
 export const ADD_TOPIC = "ADD_TOPIC";
 
+const compare = (a, b) => {
+  if (a.createdAt > b.createdAt) {
+    return -1;
+  }
+  if (a.createdAt < b.createdAt) {
+    return 1;
+  }
+  return 0;
+};
+
 export const fetchAllTopics = (topics) => {
   return {
     type: FETCHED_TOPICS,
@@ -38,7 +48,6 @@ export function addTopic(newTopic) {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(data.data);
       dispatch(addNewTopic(data.data));
     } catch (error) {
       console.log(error.message);
@@ -51,7 +60,8 @@ export function fetchTopics() {
     try {
       dispatch(startLoading());
       const data = await axios.get(`${apiUrl}/topics`);
-      dispatch(fetchAllTopics(data.data));
+      const topicsFilteredByNewFirst = data.data.sort(compare);
+      dispatch(fetchAllTopics(topicsFilteredByNewFirst));
     } catch (error) {
       console.log(error.message);
     }

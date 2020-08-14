@@ -67,7 +67,10 @@ export default function TripsDetail() {
             <br /> {tripData.item.description}
           </p>
           <p>
-            <span className="tripBar">Participants </span>
+            <span className="tripBar">
+              Participants {tripData.participants.length}/
+              {tripData.item.numPeopleAllowed}
+            </span>
           </p>
           <br />{" "}
           {tripData.participants.map((participant) => {
