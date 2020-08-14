@@ -1,8 +1,14 @@
-import { FETCHED_TRIPS, START_LOADING, ADD_TRIP } from "./actions";
+import {
+  FETCHED_TRIPS,
+  FETCHED_PERSONAL_TRIPS,
+  START_LOADING,
+  ADD_TRIP,
+} from "./actions";
 
 const initialState = {
   loading: false,
   items: [],
+  personalitems: [],
 };
 
 export default (state = initialState, action) => {
@@ -11,6 +17,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         items: action.payload,
+        loading: false,
+      };
+    }
+    case FETCHED_PERSONAL_TRIPS: {
+      return {
+        ...state,
+        personalitems: action.payload,
         loading: false,
       };
     }

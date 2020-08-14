@@ -5,3 +5,7 @@ export const selectTrips = (state) => {
 export const selectTripsLoading = (state) => {
   return state.trips.loading;
 };
+
+export const selectSpecificUserTrips = (state) => {
+  return state.trips.personalitems;
+};
