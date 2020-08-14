@@ -1,3 +1,69 @@
+.filtertripBar {
+  background-color: #8675a9;
+  padding: 1px 18px;
+  margin: 0 5px;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  margin: 0 auto;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.75);
+  background-color: #efbbcf;
+
+  div {
+    margin: 5px 0;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.slidecontainer {
+  margin: 20px 0;
+  justify-self: center;
+  text-align: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20vw;
+  height: 8px;
+  background-color: black;
+  outline: none;
+  border: 1px solid black;
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid white;
+  border-radius: 999px;
+  background: black;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #402910;
+  border: 1px solid #402910;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
 .tripsContainer {
   width: 60vw;
   margin: 0 auto;
