@@ -17,7 +17,6 @@ export default (state = initialState, action) => {
     case ADD_TOPIC: {
       return {
         ...state,
-        loading: false,
         items: [...state.items, action.payload],
       };
     }

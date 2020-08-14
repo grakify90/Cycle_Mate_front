@@ -12,10 +12,10 @@ export const fetchAllTopics = (topics) => {
   };
 };
 
-export const addNewTopic = (trip) => {
+export const addNewTopic = (topic) => {
   return {
     type: ADD_TOPIC,
-    payload: trip,
+    payload: topic,
   };
 };
 
@@ -25,25 +25,26 @@ export function startLoading() {
   };
 }
 
-// export function addTopic(newTopic) {
-//   return async function thunk(dispatch) {
-//     try {
-//       dispatch(startLoading());
-//       const { title, minBid, imageUrl } = newTopic;
-//       const token = localStorage.getItem("token");
-//       const tripFromAPI = await axios.post(
-//         `${apiUrl}/trips`,
-//         { title, minBid, imageUrl },
-//         {
-//           headers: { Authorization: `Bearer ${token}` },
-//         }
-//       );
-//       dispatch(addNewTopic(tripFromAPI.data));
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-// }
+export function addTopic(newTopic) {
+  return async function thunk(dispatch) {
+    try {
+      const { title, content, imageUrl } = newTopic;
+      dispatch(startLoading());
+      const token = localStorage.getItem("token");
+      const data = await axios.post(
+        `${apiUrl}/topics`,
+        { title: title, content: content, imageUrl: imageUrl },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      console.log(data.data);
+      dispatch(addNewTopic(data.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
 
 export function fetchTopics() {
   return async function thunk(dispatch) {
