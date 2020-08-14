@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneTrip, changeParticipant } from "../store/oneTrip/actions";
 import { selectTripData } from "../store/oneTrip/selectors";
-import { selectUser } from "../store/user/selectors";
+import { selectUser, selectToken } from "../store/user/selectors";
 
 export default function TripsDetail() {
   const { tripId } = useParams();
@@ -18,13 +18,14 @@ export default function TripsDetail() {
 
   const tripData = useSelector(selectTripData);
   const user = useSelector(selectUser);
+  const token = useSelector(selectToken);
 
   const joinOrUnjoin = () => {
     dispatch(changeParticipant(id, user));
   };
 
   if (!tripData) {
-    return <h1></h1>;
+    return null;
   }
 
   const alreadyParticipant = tripData.participants.find((participant) => {
@@ -82,7 +83,9 @@ export default function TripsDetail() {
               </div>
             );
           })}
-          {tripData.organizer.id === user.id ? (
+          {token === null ||
+          tripData.organizer.id === user.id ||
+          tripData.participants.length === tripData.item.numPeopleAllowed ? (
             <div></div>
           ) : (
             <div className="joinTripButton">

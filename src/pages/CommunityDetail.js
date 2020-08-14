@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneTopic, addReply } from "../store/oneTopic/actions";
 import { selectTopicData } from "../store/oneTopic/selectors";
+import { selectToken } from "../store/user/selectors";
 import Reply from "../components/Reply";
 
 export default function CommunityDetail() {
@@ -12,16 +13,19 @@ export default function CommunityDetail() {
   const id = parseInt(topicId);
   const dispatch = useDispatch();
 
+  const [reply, setReply] = useState({ content: "", imageUrl: "" });
+
   useEffect(() => {
     dispatch(fetchOneTopic(id));
   }, [dispatch, id]);
 
-  //Make this work
   const createReply = () => {
-    dispatch(addReply(id));
+    dispatch(addReply(id, reply));
+    setReply({ content: "", imageUrl: "" });
   };
 
   const topicData = useSelector(selectTopicData);
+  const token = useSelector(selectToken);
 
   if (!topicData) {
     return <h1></h1>;
@@ -47,10 +51,30 @@ export default function CommunityDetail() {
             <p>{topicData.item.content}</p>
             <img src={topicData.item.imageUrl} />
           </div>
-          <div className="replybutton">
+        </div>
+        {token === null ? (
+          <div></div>
+        ) : (
+          <div className="replyInputContainer">
+            <input
+              type="textarea"
+              value={reply.content}
+              placeholder="Your reply..."
+              onChange={(event) =>
+                setReply({ ...reply, content: event.target.value })
+              }
+            />
+            <input
+              type="text"
+              value={reply.imageUrl}
+              placeholder="image URL (optional)"
+              onChange={(event) =>
+                setReply({ ...reply, imageUrl: event.target.value })
+              }
+            />
             <button onClick={createReply}>Reply</button>
           </div>
-        </div>
+        )}
         {topicData.replies.map((reply, index) => {
           return (
             <Reply
