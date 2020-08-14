@@ -11,6 +11,7 @@ import TripsDetail from "./pages/TripsDetail";
 import Community from "./pages/Community";
 import CommunityDetail from "./pages/CommunityDetail";
 import AddTopic from "./pages/AddTopic";
+import AddTrip from "./pages/AddTrip";
 import ManageAccount from "./pages/ManageAccount";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +34,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/agenda" component={Trips} />
         <Route path="/detail/:tripId" component={TripsDetail} />
+        <Route path="/addtrip" component={AddTrip} />
         <Route path="/community" component={Community} />
         <Route path="/topic/:topicId" component={CommunityDetail} />
         <Route path="/addtopic" component={AddTopic} />

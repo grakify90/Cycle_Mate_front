@@ -11,7 +11,7 @@ export default function Reply(props) {
         {moment(props.time).format("D MMM YYYY, HH:mm")}:
       </p>
       <p>{props.content}</p>
-      <img src={props.imageUrl} />
+      <img src={props.imageUrl} alt="" />
     </div>
   );
 }

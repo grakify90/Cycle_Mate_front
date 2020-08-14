@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./CommunityDetail.scss";
 import moment from "moment";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchOneTopic, addReply } from "../store/oneTopic/actions";
 import { selectTopicData } from "../store/oneTopic/selectors";
@@ -28,7 +28,7 @@ export default function CommunityDetail() {
   const token = useSelector(selectToken);
 
   if (!topicData) {
-    return <h1></h1>;
+    return null;
   }
 
   return (
@@ -49,7 +49,7 @@ export default function CommunityDetail() {
           </p>
           <div className="topicContent">
             <p>{topicData.item.content}</p>
-            <img src={topicData.item.imageUrl} />
+            <img src={topicData.item.imageUrl} alt="" />
           </div>
         </div>
         {token === null ? (
