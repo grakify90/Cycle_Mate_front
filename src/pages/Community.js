@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Community.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopics } from "../store/topics/actions";
@@ -23,7 +24,11 @@ export default function Community() {
 
   return (
     <div className="topicsContainer">
-      {token && <button>Add a topic</button>}
+      {token && (
+        <Link to="/addtopic">
+          <button>Add a topic</button>
+        </Link>
+      )}
 
       {allTopics.map((topic, index) => {
         return (

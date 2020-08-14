@@ -72,7 +72,7 @@ export default function CommunityDetail() {
                 setReply({ ...reply, imageUrl: event.target.value })
               }
             />
-            <button onClick={createReply}>Reply</button>
+            <button onClick={createReply}>Submit</button>
           </div>
         )}
         {topicData.replies.map((reply, index) => {

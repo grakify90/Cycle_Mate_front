@@ -60,7 +60,7 @@ export default function SignUp() {
               value={lastName}
               onChange={(event) => setLastName(event.target.value)}
               type="text"
-              placeholder="Your first name"
+              placeholder="Your last name"
               required
             />
           </div>
