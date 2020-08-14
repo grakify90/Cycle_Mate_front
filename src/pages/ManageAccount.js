@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { changePersonalData } from "../store/user/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../store/user/selectors";

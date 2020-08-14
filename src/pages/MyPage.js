@@ -17,7 +17,10 @@ export default function Reply(props) {
           <Link to="/manageaccount">
             <button className="actionButton">Manage my account</button>
           </Link>
-          <button className="actionButton">Organize a new trip</button>
+          <Link to="/addtrip">
+            <button className="actionButton">Organize a new trip</button>
+          </Link>
+
           <button className="actionButton">My cycle agenda</button>
         </div>
       </div>

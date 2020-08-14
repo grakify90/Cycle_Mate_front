@@ -17,7 +17,6 @@ export default (state = initialState, action) => {
     case ADD_TRIP: {
       return {
         ...state,
-        loading: false,
         items: [...state.items, action.payload],
       };
     }

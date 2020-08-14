@@ -16,7 +16,7 @@ export default function Trips() {
   const isLoading = useSelector(selectTripsLoading);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return null;
   }
 
   return (

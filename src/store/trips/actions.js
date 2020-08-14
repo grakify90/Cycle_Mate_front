@@ -25,26 +25,50 @@ export function startLoading() {
   };
 }
 
-// export function addTrip(newTrip) {
-//   return async function thunk(dispatch) {
-//     try {
-//       dispatch(startLoading());
-//       const { title, minBid, imageUrl } = newTrip;
-//       const token = localStorage.getItem("token");
-//       const tripFromAPI = await axios.post(
-//         `${apiUrl}/trips`,
-//         { title, minBid, imageUrl },
-//         {
-//           headers: { Authorization: `Bearer ${token}` },
-//         }
-//       );
-//       dispatch(addNewTrip(tripFromAPI.data));
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   };
-// }
+export function addTrip(newTrip) {
+  return async function thunk(dispatch) {
+    console.log(newTrip);
+    try {
+      const {
+        title,
+        locationCity,
+        locationProvince,
+        date,
+        startingTime,
+        lengthKM,
+        numPeopleAllowed,
+        typeBike,
+        tempo,
+        description,
+      } = newTrip;
+      dispatch(startLoading());
+      const token = localStorage.getItem("token");
+      const data = await axios.post(
+        `${apiUrl}/trips`,
+        {
+          title,
+          locationCity,
+          locationProvince,
+          date,
+          startingTime,
+          lengthKM,
+          numPeopleAllowed,
+          typeBike,
+          tempo,
+          description,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
+      console.log(data.data);
+      dispatch(addNewTrip(data.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
 export function fetchTrips() {
   return async function thunk(dispatch) {
     try {
