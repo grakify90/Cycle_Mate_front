@@ -3,6 +3,7 @@ import "./Community.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopics } from "../store/topics/actions";
 import { selectTopics, selectTopicsLoading } from "../store/topics/selectors";
+import { selectToken } from "../store/user/selectors";
 import TopicCard from "../components/TopicCard";
 
 export default function Community() {
@@ -14,13 +15,16 @@ export default function Community() {
 
   const allTopics = useSelector(selectTopics);
   const isLoading = useSelector(selectTopicsLoading);
+  const token = useSelector(selectToken);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return null;
   }
 
   return (
     <div className="topicsContainer">
+      {token && <button>Add a topic</button>}
+
       {allTopics.map((topic, index) => {
         return (
           <TopicCard

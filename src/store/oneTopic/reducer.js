@@ -24,6 +24,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         replies: [...state.replies, action.payload],
+        loading: false,
       };
     }
     case START_LOADING: {

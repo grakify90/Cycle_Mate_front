@@ -42,20 +42,19 @@ export function fetchOneTopic(topicId) {
   };
 }
 
-//Make this work
-export function addReply(tripId) {
+export function addReply(topicId, reply) {
   return async function thunk(dispatch) {
     try {
+      const { content, imageUrl } = reply;
       dispatch(startLoading());
       const token = localStorage.getItem("token");
       const data = await axios.post(
-        `${apiUrl}/participants/${tripId}`,
-        {},
+        `${apiUrl}/replies/${topicId}`,
+        { content: content, imageUrl: imageUrl },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(data.data);
       dispatch(addNewReply(data.data));
     } catch (error) {
       console.log(error.message);
