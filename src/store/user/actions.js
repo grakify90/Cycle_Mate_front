@@ -30,7 +30,6 @@ export const changePersonalData = (
   firstName,
   lastName,
   email,
-  password,
   aboutMe,
   gender,
   dateOfBirth
@@ -46,7 +45,6 @@ export const changePersonalData = (
           firstName,
           lastName,
           email,
-          password,
           aboutMe,
           gender,
           dateOfBirth,

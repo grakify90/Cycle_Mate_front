@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { changePersonalData } from "../store/user/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../store/user/selectors";
+import { selectAppLoading } from "../store/appState/selectors";
 
 export default function ManageAccount() {
   const user = useSelector(selectUser);
@@ -13,6 +14,7 @@ export default function ManageAccount() {
   const [gender, setGender] = useState(user.gender);
   const [dateOfBirth, setDateOfBirth] = useState(user.dateOfBirth);
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectAppLoading);
 
   function submitForm(event) {
     event.preventDefault();
@@ -27,6 +29,10 @@ export default function ManageAccount() {
         dateOfBirth
       )
     );
+  }
+
+  if (isLoading) {
+    return null;
   }
 
   return (

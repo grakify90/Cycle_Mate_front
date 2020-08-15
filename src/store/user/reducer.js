@@ -2,15 +2,36 @@ import { LOG_OUT, LOGIN_SUCCESS, TOKEN_STILL_VALID } from "./actions";
 
 const initialState = {
   token: localStorage.getItem("token"),
-  name: null,
+  firstName: null,
+  lastName: null,
   email: null,
+  aboutMe: null,
+  gender: null,
+  dateOfBirth: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
-      return { ...state, ...action.payload };
+      const {
+        token,
+        firstName,
+        lastName,
+        email,
+        aboutMe,
+        gender,
+        dateOfBirth,
+      } = action.payload;
+      localStorage.setItem("token", token);
+      return {
+        ...state,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        aboutMe: aboutMe,
+        gender: gender,
+        dateOfBirth: dateOfBirth,
+      };
 
     case LOG_OUT:
       localStorage.removeItem("token");
