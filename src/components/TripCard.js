@@ -19,8 +19,8 @@ export default function TripCard(props) {
           Capacity: {props.participantLength}/{props.numPeopleAllowed}
         </p>
       </div>
-      <Link className="tripButton" to={`/detail/${props.id}`}>
-        <button>See details</button>
+      <Link to={`/detail/${props.id}`}>
+        <button className="tripsButton">See details</button>
       </Link>
     </div>
   );

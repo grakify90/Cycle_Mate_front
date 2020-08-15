@@ -25,7 +25,7 @@
 
 .tripsdate {
   color: #ffffff;
-  background-color: #36622b;
+  background-color: #45046a;
   border-radius: 999px;
   display: flex;
   flex-direction: column;
@@ -47,8 +47,21 @@
   }
 }
 
+.tripsButton:hover {
+  color: #ffffff !important;
+  background: #8675a9;
+  border-color: #8675a9 !important;
+  transition: all 0.4s ease 0s;
+}
+
 @media screen and (min-width: 1200px) {
   .tripsContainer {
     width: 40vw;
+  }
+}
+@media screen and (max-width: 600px) {
+  .tripsButton {
+    background: #8675a9;
+    color: #ffffff !important;
   }
 }

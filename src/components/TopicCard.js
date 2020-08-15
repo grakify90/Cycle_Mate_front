@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function TopicCard(props) {
   return (
     <div className="container" key={Math.random()}>
-      <div className="tripsdate">
+      <div className="topicsdate">
         <p>
           {props.lengthReplies}{" "}
           {props.lengthReplies === 1 ? "reply" : "replies"}

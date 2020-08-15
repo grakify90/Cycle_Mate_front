@@ -21,7 +21,7 @@ export default function TripsDetail() {
   const token = useSelector(selectToken);
 
   const joinOrUnjoin = () => {
-    dispatch(changeParticipant(id, user));
+    dispatch(changeParticipant(id));
   };
 
   if (!tripData) {

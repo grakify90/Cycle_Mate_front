@@ -32,11 +32,15 @@ export default (state = initialState, action) => {
       };
     }
     case DELETE_PARTICIPANT: {
-      const newArray = state.participants;
-      newArray.splice(action.payload);
+      console.log(action.payload);
+      const newArray = state.participants.filter((participant) => {
+        return participant.id !== action.payload.id;
+      });
+      console.log(newArray);
+
       return {
         ...state,
-        participants: newArray,
+        participants: [...newArray],
         loading: false,
       };
     }
