@@ -20,10 +20,10 @@ export const addNewParticipant = (participant) => {
   };
 };
 
-export const deleteParticipant = (userId) => {
+export const deleteParticipant = (user) => {
   return {
     type: DELETE_PARTICIPANT,
-    payload: userId,
+    payload: user,
   };
 };
 
@@ -46,11 +46,14 @@ export function fetchOneTrip(tripId) {
   };
 }
 
-export function changeParticipant(tripId, user) {
+export function changeParticipant(tripId) {
   return async function thunk(dispatch) {
     try {
       dispatch(startLoading());
       const token = localStorage.getItem("token");
+      const response = await axios.get(`${apiUrl}/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       const data = await axios.patch(
         `${apiUrl}/participants/${tripId}`,
         {},
@@ -61,7 +64,7 @@ export function changeParticipant(tripId, user) {
       if (data.data.id) {
         dispatch(addNewParticipant(data.data));
       } else {
-        dispatch(deleteParticipant(user));
+        dispatch(deleteParticipant(response.data));
       }
     } catch (error) {
       console.log(error.message);

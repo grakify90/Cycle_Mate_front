@@ -31,6 +31,18 @@ export default function CommunityDetail() {
     return null;
   }
 
+  const compare = (a, b) => {
+    if (a.createdAt > b.createdAt) {
+      return -1;
+    }
+    if (a.createdAt < b.createdAt) {
+      return 1;
+    }
+    return 0;
+  };
+
+  const sortedReplies = topicData.replies.sort(compare);
+
   return (
     <div>
       {" "}
@@ -75,7 +87,7 @@ export default function CommunityDetail() {
             <button onClick={createReply}>Submit</button>
           </div>
         )}
-        {topicData.replies.map((reply, index) => {
+        {sortedReplies.map((reply, index) => {
           return (
             <Reply
               key={index}
