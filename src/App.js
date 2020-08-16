@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-
 import { Switch, Route } from "react-router-dom";
+import { Normalize } from "styled-normalize";
+import GlobalStyle from "./styles/GlobalStyle";
+
 import NavBar from "./components/NavBar";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
@@ -29,6 +31,8 @@ function App() {
 
   return (
     <div className="App">
+      <Normalize />
+      <GlobalStyle />
       <NavBar />
       {isLoading ? <h1>Loading...</h1> : null}
       <Switch>
