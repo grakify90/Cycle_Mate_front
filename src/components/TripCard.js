@@ -1,6 +1,6 @@
 import React from "react";
-import "./TripCard.scss";
 import { Link } from "react-router-dom";
+import { PurpleButton } from "../styles/Button";
 
 export default function TripCard(props) {
   return (
@@ -20,7 +20,7 @@ export default function TripCard(props) {
         </p>
       </div>
       <Link to={`/detail/${props.id}`}>
-        <button className="tripsButton">See details</button>
+        <PurpleButton>See details</PurpleButton>
       </Link>
     </div>
   );

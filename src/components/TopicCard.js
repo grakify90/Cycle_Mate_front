@@ -1,6 +1,7 @@
 import React from "react";
 import "./TopicCard.scss";
 import { Link } from "react-router-dom";
+import { Button } from "../styles/Button";
 
 export default function TopicCard(props) {
   return (
@@ -17,7 +18,7 @@ export default function TopicCard(props) {
         <p>{props.content}</p>
       </div>
       <Link className="tripButton" to={`/topic/${props.id}`}>
-        <button>View topic</button>
+        <Button>View topic</Button>
       </Link>
     </div>
   );
