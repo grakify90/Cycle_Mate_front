@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./Trips.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTripsUser } from "../store/trips/actions";
 import {

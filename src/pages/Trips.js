@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./Trips.scss";
+import { Container } from "../styles/Container";
+import {
+  FilterContainer,
+  InnerFilterContainer,
+  FilterBar,
+  Slider,
+} from "./Trips.Styles";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTrips } from "../store/trips/actions";
 import { selectTrips, selectTripsLoading } from "../store/trips/selectors";
@@ -34,24 +40,21 @@ export default function Trips() {
           });
 
   return (
-    <div className="tripsContainer">
-      <div className="filterContainer">
-        <div>
-          <label className="filtertripBar">
-            Max. length {filter.lengthKM}km
-          </label>
-          <input
+    <Container>
+      <FilterContainer>
+        <InnerFilterContainer>
+          <FilterBar>Max. length {filter.lengthKM}km</FilterBar>
+          <Slider
             onChange={(event) => {
               setFilter({ ...filter, lengthKM: parseInt(event.target.value) });
             }}
             type="range"
             min="0"
             max="130"
-            className="slider"
-          ></input>
-        </div>
-        <div>
-          <label className="filtertripBar">Type of bike:</label>
+          ></Slider>
+        </InnerFilterContainer>
+        <InnerFilterContainer>
+          <FilterBar>Type of bike:</FilterBar>
 
           <select
             value={filter.typeBike}
@@ -64,7 +67,7 @@ export default function Trips() {
             <option value="Mountainbike">Mountainbike</option>
             <option value="Touring">Touring</option>
           </select>
-        </div>
+        </InnerFilterContainer>
         {/* <div>
           <label className="filtertripBar">Province:</label>
 
@@ -89,7 +92,7 @@ export default function Trips() {
             <option value="Zeeland">Zeeland</option>
           </select>
         </div> */}
-      </div>
+      </FilterContainer>
 
       {filterTrips.map((trip, index) => {
         return (
@@ -107,6 +110,6 @@ export default function Trips() {
           />
         );
       })}
-    </div>
+    </Container>
   );
 }

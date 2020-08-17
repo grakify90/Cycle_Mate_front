@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Community.scss";
+import { Container } from "../styles/Container";
+import { Button } from "../styles/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTopics } from "../store/topics/actions";
 import { selectTopics, selectTopicsLoading } from "../store/topics/selectors";
@@ -23,10 +24,10 @@ export default function Community() {
   }
 
   return (
-    <div className="topicsContainer">
+    <Container>
       {token && (
         <Link to="/addtopic">
-          <button>Add a topic</button>
+          <Button primary>Add a topic</Button>
         </Link>
       )}
 
@@ -41,6 +42,6 @@ export default function Community() {
           />
         );
       })}
-    </div>
+    </Container>
   );
 }

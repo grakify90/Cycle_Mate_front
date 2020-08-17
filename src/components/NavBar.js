@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { NavBarContainer, NavBarItem } from "./NavBar.Styles";
 import { useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
-import "./NavBar.scss";
 
 export default function NavBar() {
   const token = useSelector(selectToken);
@@ -14,30 +14,17 @@ export default function NavBar() {
   return (
     <>
       {loginLogoutControls}
-      <div className="navbarContainer">
-        <NavLink
-          className="navbarItem"
-          activeClassName="activeLink"
-          exact
-          to="/"
-        >
+      <NavBarContainer>
+        <NavBarItem activeClassName="activeLink" exact to="/">
           Home
-        </NavLink>
-        <NavLink
-          className="navbarItem"
-          activeClassName="activeLink"
-          to="/agenda"
-        >
+        </NavBarItem>
+        <NavBarItem activeClassName="activeLink" to="/agenda">
           Agenda
-        </NavLink>
-        <NavLink
-          className="navbarItem"
-          activeClassName="activeLink"
-          to="/community"
-        >
+        </NavBarItem>
+        <NavBarItem activeClassName="activeLink" to="/community">
           Community
-        </NavLink>
-      </div>
+        </NavBarItem>
+      </NavBarContainer>
     </>
   );
 }

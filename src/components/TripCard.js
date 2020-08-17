@@ -1,15 +1,16 @@
 import React from "react";
+import { CardContainer, CardCircle } from "../styles/CardStyles";
 import { Link } from "react-router-dom";
-import { PurpleButton } from "../styles/Button";
+import { Button } from "../styles/Button";
 
 export default function TripCard(props) {
   return (
-    <div className="container">
-      <div className="tripsdate">
+    <CardContainer>
+      <CardCircle>
         <p>{props.date}</p>
         <p>{props.startingTime}</p>
-      </div>
-      <div className="innerContainer1">
+      </CardCircle>
+      <div>
         {" "}
         <h3>{props.title}</h3>
         <p>
@@ -20,8 +21,8 @@ export default function TripCard(props) {
         </p>
       </div>
       <Link to={`/detail/${props.id}`}>
-        <PurpleButton>See details</PurpleButton>
+        <Button>See details</Button>
       </Link>
-    </div>
+    </CardContainer>
   );
 }

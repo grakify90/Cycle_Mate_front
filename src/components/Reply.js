@@ -1,11 +1,10 @@
 import React from "react";
-import "./TripCard.scss";
-import "./Reply.scss";
+import { ReplyContainer } from "./Reply.Styles";
 import moment from "moment";
 
 export default function Reply(props) {
   return (
-    <div className="replyContainer">
+    <ReplyContainer>
       <h3>
         <strong>
           {props.replierFirstName} {props.replierLastName} at{" "}
@@ -14,6 +13,6 @@ export default function Reply(props) {
       </h3>
       <p>{props.content}</p>
       <img src={props.imageUrl} alt="" />
-    </div>
+    </ReplyContainer>
   );
 }

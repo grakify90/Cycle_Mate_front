@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./CommunityDetail.scss";
+import { DetailContainer } from "../styles/DetailContainer";
+import { InnerDetailContainer } from "../styles/InnerDetailContainer";
+import { TitleBlock } from "../styles/TitleBlock";
+import { Button } from "../styles/Button";
+import { TopicContent, ReplyContainer } from "./CommunityDetail.Styles";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,27 +51,27 @@ export default function CommunityDetail() {
     <div>
       {" "}
       <h1>{topicData.item.title}</h1>{" "}
-      <div className="topicContainer">
-        <div className="topicDetailContainer">
+      <DetailContainer>
+        <InnerDetailContainer primary>
           <p>
-            <span className="topicBar">Topic starter</span>
+            <TitleBlock primary>Topic starter</TitleBlock>
             <br /> {topicData.topicstarter.firstName}{" "}
             {topicData.topicstarter.lastName}
           </p>
           <p>
-            <span className="topicBar">Created at</span>
+            <TitleBlock primary>Created at</TitleBlock>
             <br />{" "}
             {moment(topicData.item.createdAt).format("D MMM YYYY, HH:mm")}{" "}
           </p>
-          <div className="topicContent">
+          <TopicContent>
             <p>{topicData.item.content}</p>
             <img src={topicData.item.imageUrl} alt="" />
-          </div>
-        </div>
+          </TopicContent>
+        </InnerDetailContainer>
         {token === null ? (
           <div></div>
         ) : (
-          <div className="replyInputContainer">
+          <ReplyContainer>
             <input
               type="textarea"
               value={reply.content}
@@ -84,8 +88,10 @@ export default function CommunityDetail() {
                 setReply({ ...reply, imageUrl: event.target.value })
               }
             />
-            <button onClick={createReply}>Submit</button>
-          </div>
+            <Button primary onClick={createReply}>
+              Submit
+            </Button>
+          </ReplyContainer>
         )}
         {sortedReplies.map((reply, index) => {
           return (
@@ -99,7 +105,7 @@ export default function CommunityDetail() {
             />
           );
         })}
-      </div>
+      </DetailContainer>
     </div>
   );
 }
