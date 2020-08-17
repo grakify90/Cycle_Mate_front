@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import color from "./colors";
+import color from "./_colors";
 
 export const TitleBlock = styled.span`
   background-color: ${(props) =>

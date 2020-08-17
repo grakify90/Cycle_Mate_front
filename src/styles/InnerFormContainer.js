@@ -8,4 +8,8 @@ export const InnerFormContainer = styled.div`
   input {
     font-family: "Courier New", Courier, monospace;
   }
+
+  textarea {
+    font-family: "Courier New", Courier, monospace;
+  }
 `;

@@ -29,7 +29,6 @@ export const logOut = () => ({ type: LOG_OUT });
 export const changePersonalData = (
   firstName,
   lastName,
-  email,
   aboutMe,
   gender,
   dateOfBirth
@@ -44,7 +43,6 @@ export const changePersonalData = (
         {
           firstName,
           lastName,
-          email,
           aboutMe,
           gender,
           dateOfBirth,

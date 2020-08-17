@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MessageBox from "../components/MessageBox";
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
@@ -9,10 +10,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 export default function AddTrip() {
+  const [message, setMessage] = useState("");
   const [trip, setTrip] = useState({
     title: "",
     locationCity: "",
     locationProvince: "",
+    streetName: "",
+    streetNumber: "",
+    postalCode: "",
     date: "",
     startingTime: "",
     lengthKM: "",
@@ -38,6 +43,9 @@ export default function AddTrip() {
         title: trip.title,
         locationCity: trip.locationCity,
         locationProvince: trip.locationProvince,
+        streetName: trip.streetName,
+        streetNumber: trip.streetNumber,
+        postalCode: trip.postalCode,
         date: trip.date,
         lengthKM: trip.lengthKM,
         numPeopleAllowed: trip.numPeopleAllowed,
@@ -48,25 +56,30 @@ export default function AddTrip() {
       })
     );
 
-    history.push("/");
-    // setTrip({
-    //   title: "",
-    //   locationCity: "",
-    //   locationProvince: "",
-    //   description: "",
-    //   date: "",
-    //   startingTime: "",
-    //   lengthKM: 0,
-    //   numPeopleAllowed: 0,
-    //   typeBike: "",
-    //   tempo: "",
-    // });
+    setMessage(<MessageBox />);
+
+    setTrip({
+      title: "",
+      locationCity: "",
+      locationProvince: "",
+      streetName: "",
+      streetNumber: "",
+      postalCode: "",
+      description: "",
+      date: "",
+      startingTime: "",
+      lengthKM: 0,
+      numPeopleAllowed: 0,
+      typeBike: "",
+      tempo: "",
+    });
   }
 
   return (
     <div>
       <form>
         <h1>Organize a trip!</h1>
+        <div>{message}</div>
         <FormContainer>
           <InnerFormContainer>
             <TitleBlock>Title</TitleBlock>
@@ -76,7 +89,7 @@ export default function AddTrip() {
                 setTrip({ ...trip, title: event.target.value })
               }
               type="text"
-              placeholder="Title"
+              placeholder="E.g.: Rottemeren"
               required
             />
           </InnerFormContainer>
@@ -88,7 +101,7 @@ export default function AddTrip() {
                 setTrip({ ...trip, locationCity: event.target.value })
               }
               type="text"
-              placeholder="Enter..."
+              placeholder="E.g.: Bleiswijk"
               required
             />
           </InnerFormContainer>
@@ -115,6 +128,42 @@ export default function AddTrip() {
               <option value="Flevoland">Flevoland</option>
               <option value="Zeeland">Zeeland</option>
             </select>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Street name</TitleBlock>
+            <input
+              value={trip.streetName}
+              onChange={(event) =>
+                setTrip({ ...trip, streetName: event.target.value })
+              }
+              type="text"
+              placeholder="E.g.: Rottedijk"
+              required
+            />
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Street number</TitleBlock>
+            <input
+              value={trip.streetNumber}
+              onChange={(event) =>
+                setTrip({ ...trip, streetNumber: parseInt(event.target.value) })
+              }
+              type="number"
+              placeholder="E.g.: 55"
+              required
+            />
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Postal code</TitleBlock>
+            <input
+              value={trip.postalCode}
+              onChange={(event) =>
+                setTrip({ ...trip, postalCode: event.target.value })
+              }
+              type="text"
+              placeholder="E.g.: 2665KS"
+              required
+            />
           </InnerFormContainer>
           <InnerFormContainer>
             <TitleBlock>Date</TitleBlock>
@@ -146,7 +195,7 @@ export default function AddTrip() {
                 setTrip({ ...trip, lengthKM: parseInt(event.target.value) })
               }
               type="number"
-              placeholder="Enter..."
+              placeholder="E.g.: 60"
               required
             />
           </InnerFormContainer>
@@ -161,7 +210,7 @@ export default function AddTrip() {
                 })
               }
               type="number"
-              placeholder="Enter..."
+              placeholder="E.g.: 6"
               min="2"
               required
             />
@@ -203,7 +252,7 @@ export default function AddTrip() {
               onChange={(event) =>
                 setTrip({ ...trip, description: event.target.value })
               }
-              placeholder="Enter..."
+              placeholder="What's the trip about?"
               required
             />
           </InnerFormContainer>

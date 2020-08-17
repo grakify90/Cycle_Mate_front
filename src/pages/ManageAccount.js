@@ -12,7 +12,6 @@ export default function ManageAccount() {
   const user = useSelector(selectUser);
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
-  const [email, setEmail] = useState(user.email);
   // const [password, setPassword] = useState(user.password);
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const [gender, setGender] = useState(user.gender);
@@ -24,14 +23,7 @@ export default function ManageAccount() {
     event.preventDefault();
 
     dispatch(
-      changePersonalData(
-        firstName,
-        lastName,
-        email,
-        aboutMe,
-        gender,
-        dateOfBirth
-      )
+      changePersonalData(firstName, lastName, aboutMe, gender, dateOfBirth)
     );
   }
 
@@ -61,16 +53,6 @@ export default function ManageAccount() {
               onChange={(event) => setLastName(event.target.value)}
               type="text"
               placeholder={lastName}
-              required
-            />
-          </InnerFormContainer>
-          <InnerFormContainer>
-            <TitleBlock>Email address</TitleBlock>
-            <input
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              type="email"
-              placeholder={email}
               required
             />
           </InnerFormContainer>
