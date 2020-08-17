@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { TitleBlock } from "../styles/TitleBlock";
+import { Button } from "../styles/Button";
+import { FormContainer } from "../styles/FormContainer";
+import { InnerFormContainer } from "../styles/InnerFormContainer";
 import { changePersonalData } from "../store/user/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../store/user/selectors";
@@ -39,9 +43,9 @@ export default function ManageAccount() {
     <div>
       <form>
         <h1>Manage my account</h1>
-        <div className="formContainer">
-          <div className="formItemContainer">
-            <label className="logtripBar">First name</label>
+        <FormContainer>
+          <InnerFormContainer>
+            <TitleBlock>First name</TitleBlock>
             <input
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
@@ -49,9 +53,9 @@ export default function ManageAccount() {
               placeholder={firstName}
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Last name</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Last name</TitleBlock>
             <input
               value={lastName}
               onChange={(event) => setLastName(event.target.value)}
@@ -59,9 +63,9 @@ export default function ManageAccount() {
               placeholder={lastName}
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Email address</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Email address</TitleBlock>
             <input
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -69,18 +73,18 @@ export default function ManageAccount() {
               placeholder={email}
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">About Me</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>About Me</TitleBlock>
             <textarea
               value={aboutMe}
               onChange={(event) => setAboutMe(event.target.value)}
               placeholder={aboutMe}
               required
             />
-          </div>{" "}
-          <div className="formItemContainer">
-            <label className="logtripBar">Gender</label>
+          </InnerFormContainer>{" "}
+          <InnerFormContainer>
+            <TitleBlock>Gender</TitleBlock>
             <div className="radioButton">
               {" "}
               <input type="radio" onChange={() => setGender("male")} />
@@ -90,20 +94,20 @@ export default function ManageAccount() {
               <input type="radio" onChange={() => setGender("other")} />
               <label>Other</label>
             </div>
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Date of Birth</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Date of Birth</TitleBlock>
             <input
               type="date"
               placeholder="dd-mm-yyyy"
               value={dateOfBirth}
               onChange={(event) => setDateOfBirth(event.target.value)}
             />
-          </div>
-        </div>
+          </InnerFormContainer>
+        </FormContainer>
 
         <div>
-          <button onClick={submitForm}>Change my data</button>
+          <Button onClick={submitForm}>Change my data</Button>
         </div>
       </form>
     </div>

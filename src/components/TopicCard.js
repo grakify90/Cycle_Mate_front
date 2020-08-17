@@ -6,7 +6,7 @@ import { CardContainer, CardCircle } from "../styles/CardStyles";
 export default function TopicCard(props) {
   return (
     <CardContainer key={Math.random()}>
-      <CardCircle>
+      <CardCircle primary>
         <p>
           {props.lengthReplies}{" "}
           {props.lengthReplies === 1 ? "reply" : "replies"}

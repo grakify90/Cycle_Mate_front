@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { TitleBlock } from "../styles/TitleBlock";
+import { Button } from "../styles/Button";
+import { FormContainer } from "../styles/FormContainer";
+import { InnerFormContainer } from "../styles/InnerFormContainer";
 import { addTopic } from "../store/topics/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,9 +38,9 @@ export default function AddTopic() {
     <div>
       <form>
         <h1>Add a topic</h1>
-        <div className="formContainer">
-          <div className="formItemContainer">
-            <label className="logtripBar">Title</label>
+        <FormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Title</TitleBlock>
             <input
               value={topic.title}
               onChange={(event) =>
@@ -46,9 +50,9 @@ export default function AddTopic() {
               placeholder="Title"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Content</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Content</TitleBlock>
             <textarea
               value={topic.content}
               onChange={(event) =>
@@ -57,9 +61,9 @@ export default function AddTopic() {
               placeholder="What's up?"
               required
             />
-          </div>{" "}
-          <div className="formItemContainer">
-            <label className="logtripBar">Image URL</label>
+          </InnerFormContainer>{" "}
+          <InnerFormContainer>
+            <TitleBlock>Image URL</TitleBlock>
             <input
               value={topic.imageUrl}
               onChange={(event) =>
@@ -69,11 +73,11 @@ export default function AddTopic() {
               placeholder="(optional)"
               required
             />
-          </div>
-        </div>
+          </InnerFormContainer>
+        </FormContainer>
 
         <div>
-          <button onClick={submitForm}>Submit</button>
+          <Button onClick={submitForm}>Submit</Button>
         </div>
       </form>
     </div>

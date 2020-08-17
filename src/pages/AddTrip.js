@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { TitleBlock } from "../styles/TitleBlock";
+import { Button } from "../styles/Button";
+import { FormContainer } from "../styles/FormContainer";
+import { InnerFormContainer } from "../styles/InnerFormContainer";
 import { addTrip } from "../store/trips/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,9 +67,9 @@ export default function AddTrip() {
     <div>
       <form>
         <h1>Organize a trip!</h1>
-        <div className="formContainer">
-          <div className="formItemContainer">
-            <label className="logtripBar">Title</label>
+        <FormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Title</TitleBlock>
             <input
               value={trip.title}
               onChange={(event) =>
@@ -75,9 +79,9 @@ export default function AddTrip() {
               placeholder="Title"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Location city</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Location city</TitleBlock>
             <input
               value={trip.locationCity}
               onChange={(event) =>
@@ -87,9 +91,9 @@ export default function AddTrip() {
               placeholder="Enter..."
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Location province</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Location province</TitleBlock>
             <select
               value={trip.locationProvince}
               onChange={(event) =>
@@ -111,9 +115,9 @@ export default function AddTrip() {
               <option value="Flevoland">Flevoland</option>
               <option value="Zeeland">Zeeland</option>
             </select>
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Date</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Date</TitleBlock>
             <input
               type="date"
               placeholder="dd-mm-yyyy"
@@ -122,9 +126,9 @@ export default function AddTrip() {
                 setTrip({ ...trip, date: event.target.value })
               }
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Starting time</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Starting time</TitleBlock>
             <input
               value={trip.startingTime}
               onChange={(event) =>
@@ -133,9 +137,9 @@ export default function AddTrip() {
               type="time"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Length (in KM)</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Length (in KM)</TitleBlock>
             <input
               value={trip.lengthKM}
               onChange={(event) =>
@@ -145,9 +149,9 @@ export default function AddTrip() {
               placeholder="Enter..."
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Participants</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Participants</TitleBlock>
             <input
               value={trip.numPeopleAllowed}
               onChange={(event) =>
@@ -161,9 +165,9 @@ export default function AddTrip() {
               min="2"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Type of bike</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Type of bike</TitleBlock>
             <select
               value={trip.typeBike}
               onChange={(event) =>
@@ -176,9 +180,9 @@ export default function AddTrip() {
               <option value="Mountainbike">Mountainbike</option>
               <option value="Touring">Touring</option>
             </select>
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Tempo</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Tempo</TitleBlock>
             <select
               value={trip.tempo}
               onChange={(event) =>
@@ -191,9 +195,9 @@ export default function AddTrip() {
               <option value="Medium">Medium</option>
               <option value="Athletic">Athletic</option>
             </select>
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Description</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Description</TitleBlock>
             <textarea
               value={trip.description}
               onChange={(event) =>
@@ -202,11 +206,11 @@ export default function AddTrip() {
               placeholder="Enter..."
               required
             />
-          </div>
-        </div>
+          </InnerFormContainer>
+        </FormContainer>
 
         <div>
-          <button onClick={submitForm}>Submit</button>
+          <Button onClick={submitForm}>Submit</Button>
         </div>
       </form>
     </div>

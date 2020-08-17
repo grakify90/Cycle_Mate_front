@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Container } from "../styles/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTripsUser } from "../store/trips/actions";
 import {
@@ -32,7 +33,7 @@ export default function MyAgenda() {
   }
 
   return (
-    <div className="tripsContainer">
+    <Container>
       <h1>My Agenda</h1>
       {userTrips.map((trip, index) => {
         return (
@@ -49,6 +50,6 @@ export default function MyAgenda() {
           />
         );
       })}
-    </div>
+    </Container>
   );
 }
