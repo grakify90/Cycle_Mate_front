@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { TitleBlock } from "../styles/TitleBlock";
+import { Button } from "../styles/Button";
+import { FormContainer } from "../styles/FormContainer";
+import { InnerFormContainer } from "../styles/InnerFormContainer";
 import { login } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
-import "./Login.scss";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -20,20 +23,20 @@ export default function SignUp() {
 
   function submitForm(event) {
     event.preventDefault();
-
+    console.log(password);
+    console.log(email);
     dispatch(login(email, password));
 
-    setEmail("");
-    setPassword("");
+    history.push("/");
   }
 
   return (
     <div>
       <form>
         <h1>Login</h1>
-        <div className="formContainer">
-          <div className="formItemContainer">
-            <label className="tripBar">Email address</label>
+        <FormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Email address</TitleBlock>
             <input
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -41,10 +44,10 @@ export default function SignUp() {
               placeholder="Enter email"
               required
             />
-          </div>
+          </InnerFormContainer>
 
-          <div className="formItemContainer">
-            <label className="tripBar">Password</label>
+          <InnerFormContainer>
+            <TitleBlock>Password</TitleBlock>
             <input
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -52,11 +55,11 @@ export default function SignUp() {
               placeholder="Password"
               required
             />
-          </div>
-        </div>
+          </InnerFormContainer>
+        </FormContainer>
 
         <div>
-          <button onClick={submitForm}>Log in</button>
+          <Button onClick={submitForm}>Log in</Button>
         </div>
         <Link to="/signup" style={{ textDecoration: "none", color: "#c3aed6" }}>
           Click here to sign up

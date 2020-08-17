@@ -1,9 +1,9 @@
 import React from "react";
-import "./Home.scss";
+import { Container } from "../styles/Container";
 
 export default function Home() {
   return (
-    <div className="Home">
+    <Container>
       <h1>Welcome to Cycle Mate</h1>
       <p>
         Cycle Mate is the perfect platform for cycle lovers who enjoy practising
@@ -18,6 +18,6 @@ export default function Home() {
         src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/05/11/18/cycling-guide.jpg?w=990"
         alt="Cycle Mate"
       />
-    </div>
+    </Container>
   );
 }

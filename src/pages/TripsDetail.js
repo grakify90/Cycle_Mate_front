@@ -1,5 +1,9 @@
 import React, { useEffect } from "react";
-import "./TripsDetail.scss";
+import { DetailContainer } from "../styles/DetailContainer";
+import { Button } from "../styles/Button";
+import { InnerDetailContainer } from "../styles/InnerDetailContainer";
+import { TitleBlock } from "../styles/TitleBlock";
+import { Participant, HiddenAboutMe } from "./TripsDetail.Styles";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,53 +40,53 @@ export default function TripsDetail() {
     <div>
       {" "}
       <h1>{tripData.item.title}</h1>{" "}
-      <div className="tripContainer">
-        <div className="tripDetailContainer">
+      <DetailContainer>
+        <InnerDetailContainer>
           <p>
-            <span className="tripBar">Location</span>
+            <TitleBlock>Location</TitleBlock>
             <br /> {tripData.item.locationCity} (
             {tripData.item.locationProvince})
           </p>
           <p>
-            <span className="tripBar">Organizer</span>
+            <TitleBlock>Organizer</TitleBlock>
             <br /> {tripData.organizer.firstName} {tripData.organizer.lastName}
           </p>
           <p>
-            <span className="tripBar">When</span>
+            <TitleBlock>When</TitleBlock>
             <br /> {moment(tripData.item.date).format(
               "dddd, MMMM Do YYYY"
             )}{" "}
             {tripData.item.startingTime}h
           </p>
           <p>
-            <span className="tripBar">Length of trip</span> <br />
+            <TitleBlock>Length of trip</TitleBlock> <br />
             {tripData.item.lengthKM}km
           </p>
           <p>
-            <span className="tripBar">Intended for</span>
+            <TitleBlock>Intended for</TitleBlock>
             <br /> {tripData.item.typeBike}, {tripData.item.tempo} tempo
           </p>
           <p>
-            <span className="tripBar">Description</span>
+            <TitleBlock>Description</TitleBlock>
             <br /> {tripData.item.description}
           </p>
           <p>
-            <span className="tripBar">
+            <TitleBlock>
               Participants {tripData.participants.length}/
               {tripData.item.numPeopleAllowed}
-            </span>
+            </TitleBlock>
           </p>
           <br />{" "}
           {tripData.participants.map((participant) => {
             return (
               <div key={Math.random()}>
-                <p className="tripParticipant">
+                <Participant>
                   {participant.firstName} {participant.lastName}
-                  <span className="hiddenAboutMe">
+                  <HiddenAboutMe>
                     <strong>About {participant.firstName}:</strong>
                     <i> {participant.aboutMe}</i>
-                  </span>
-                </p>
+                  </HiddenAboutMe>
+                </Participant>
               </div>
             );
           })}
@@ -91,14 +95,12 @@ export default function TripsDetail() {
           tripData.participants.length === tripData.item.numPeopleAllowed ? (
             <div></div>
           ) : (
-            <div className="joinTripButton">
-              <button onClick={joinOrUnjoin}>
-                {alreadyParticipant ? "Unjoin trip" : "Join this trip!"}
-              </button>
-            </div>
+            <Button onClick={joinOrUnjoin}>
+              {alreadyParticipant ? "Unjoin trip" : "Join this trip!"}
+            </Button>
           )}
-        </div>
-      </div>
+        </InnerDetailContainer>
+      </DetailContainer>
     </div>
   );
 }

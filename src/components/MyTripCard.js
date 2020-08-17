@@ -1,15 +1,16 @@
 import React from "react";
-import "./TripCard.scss";
+import { CardContainer, CardCircle } from "../styles/CardStyles";
 import { Link } from "react-router-dom";
+import { Button } from "../styles/Button";
 
 export default function MyTripCard(props) {
   return (
-    <div className="container">
-      <div className="tripsdate">
+    <CardContainer>
+      <CardCircle>
         <p>{props.date}</p>
         <p>{props.startingTime}</p>
-      </div>
-      <div className="innerContainer1">
+      </CardCircle>
+      <div>
         {" "}
         <h3>{props.title}</h3>
         <p>
@@ -17,8 +18,8 @@ export default function MyTripCard(props) {
         </p>
       </div>
       <Link className="tripButton" to={`/detail/${props.id}`}>
-        <button>See details</button>
+        <Button>See details</Button>
       </Link>
-    </div>
+    </CardContainer>
   );
 }

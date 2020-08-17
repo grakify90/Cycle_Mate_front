@@ -1,30 +1,40 @@
 import React from "react";
-import "./MyPage.scss";
 import Home from "./Home";
+import { Button } from "../styles/Button";
+import { Container } from "../styles/Container";
+import { DetailContainer } from "../styles/DetailContainer";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser, selectToken } from "../store/user/selectors";
 
-export default function Reply(props) {
+export default function MyPage() {
   const user = useSelector(selectUser);
   const token = useSelector(selectToken);
 
   if (token) {
     return (
-      <div className="mypageContainer">
-        <div className="mypageDetailContainer">
+      <Container>
+        <DetailContainer
+          primary
+          style={{
+            display: "grid",
+            color: "#ffffff",
+            borderRadius: "5px",
+            padding: "2vw",
+          }}
+        >
           <h1>{user.firstName}'s Cycle Mate</h1>
           <Link to="/manageaccount">
-            <button className="actionButton">Manage my account</button>
+            <Button style={{ margin: "20px auto" }}>Manage my account</Button>
           </Link>
           <Link to="/addtrip">
-            <button className="actionButton">Organize a new trip</button>
+            <Button style={{ margin: "20px auto" }}>Organize a new trip</Button>
           </Link>
           <Link to="/myagenda">
-            <button className="actionButton">My cycle agenda</button>
+            <Button style={{ margin: "20px auto" }}>My cycle agenda</Button>
           </Link>
-        </div>
-      </div>
+        </DetailContainer>
+      </Container>
     );
   }
   return <Home />;

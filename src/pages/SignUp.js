@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { TitleBlock } from "../styles/TitleBlock";
+import { Button } from "../styles/Button";
+import { FormContainer } from "../styles/FormContainer";
+import { InnerFormContainer } from "../styles/InnerFormContainer";
 import { signUp } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./SignUp.scss";
 
 export default function SignUp() {
   const [firstName, setFirstName] = useState("");
@@ -43,9 +46,9 @@ export default function SignUp() {
     <div>
       <form>
         <h1>Sign Up</h1>
-        <div className="formContainer">
-          <div className="formItemContainer">
-            <label className="logtripBar">First name</label>
+        <FormContainer>
+          <InnerFormContainer>
+            <TitleBlock>First name</TitleBlock>
             <input
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
@@ -53,9 +56,9 @@ export default function SignUp() {
               placeholder="Your first name"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Last name</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Last name</TitleBlock>
             <input
               value={lastName}
               onChange={(event) => setLastName(event.target.value)}
@@ -63,9 +66,9 @@ export default function SignUp() {
               placeholder="Your last name"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Email address</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Email address</TitleBlock>
             <input
               value={email}
               onChange={(event) => setEmail(event.target.value)}
@@ -73,9 +76,9 @@ export default function SignUp() {
               placeholder="Enter email"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Password</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Password</TitleBlock>
             <input
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -83,18 +86,18 @@ export default function SignUp() {
               placeholder="Password"
               required
             />
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">About Me</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>About Me</TitleBlock>
             <textarea
               value={aboutMe}
               onChange={(event) => setAboutMe(event.target.value)}
               placeholder="Tell something about yourself"
               required
             />
-          </div>{" "}
-          <div className="formItemContainer">
-            <label className="logtripBar">Gender</label>
+          </InnerFormContainer>{" "}
+          <InnerFormContainer>
+            <TitleBlock>Gender</TitleBlock>
             <div className="radioButton">
               {" "}
               <input type="radio" onChange={() => setGender("male")} />
@@ -104,20 +107,22 @@ export default function SignUp() {
               <input type="radio" onChange={() => setGender("other")} />
               <label>Other</label>
             </div>
-          </div>
-          <div className="formItemContainer">
-            <label className="logtripBar">Date of Birth</label>
+          </InnerFormContainer>
+          <InnerFormContainer>
+            <TitleBlock>Date of Birth</TitleBlock>
             <input
               type="date"
               placeholder="dd-mm-yyyy"
               value={dateOfBirth}
               onChange={(event) => setDateOfBirth(event.target.value)}
             />
-          </div>
-        </div>
+          </InnerFormContainer>
+        </FormContainer>
 
         <div>
-          <button onClick={submitForm}>Join Cycle Mate!</button>
+          <Button primary onClick={submitForm}>
+            Join Cycle Mate!
+          </Button>
         </div>
       </form>
     </div>

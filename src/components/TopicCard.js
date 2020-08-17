@@ -1,25 +1,25 @@
 import React from "react";
-import "./TopicCard.scss";
 import { Link } from "react-router-dom";
 import { Button } from "../styles/Button";
+import { CardContainer, CardCircle } from "../styles/CardStyles";
 
 export default function TopicCard(props) {
   return (
-    <div className="container" key={Math.random()}>
-      <div className="topicsdate">
+    <CardContainer key={Math.random()}>
+      <CardCircle>
         <p>
           {props.lengthReplies}{" "}
           {props.lengthReplies === 1 ? "reply" : "replies"}
         </p>
-      </div>
-      <div className="innerContainer1">
+      </CardCircle>
+      <div>
         {" "}
         <h3>{props.title}</h3>
         <p>{props.content}</p>
       </div>
       <Link className="tripButton" to={`/topic/${props.id}`}>
-        <Button>View topic</Button>
+        <Button primary>View topic</Button>
       </Link>
-    </div>
+    </CardContainer>
   );
 }
