@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import color from "../styles/colors";
+import color from "../styles/_colors";
 
 export const TopicContent = styled.div`
   background-color: ${color.armygreen};

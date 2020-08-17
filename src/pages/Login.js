@@ -23,8 +23,6 @@ export default function SignUp() {
 
   function submitForm(event) {
     event.preventDefault();
-    console.log(password);
-    console.log(email);
     dispatch(login(email, password));
 
     history.push("/");

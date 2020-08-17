@@ -10,6 +10,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOneTrip, changeParticipant } from "../store/oneTrip/actions";
 import { selectTripData } from "../store/oneTrip/selectors";
 import { selectUser, selectToken } from "../store/user/selectors";
+import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
+
+const accessToken =
+  "pk.eyJ1IjoiaGVsbG9rbHZlIiwiYSI6ImNrZHlwazkxYTNkc2kycnRhZnQxc2FvM3oifQ.X3DrrVAEgxtRpcO9kbYD_w";
+
+const Map = ReactMapboxGl({
+  accessToken,
+});
 
 export default function TripsDetail() {
   const { tripId } = useParams();
@@ -46,6 +54,13 @@ export default function TripsDetail() {
             <TitleBlock>Location</TitleBlock>
             <br /> {tripData.item.locationCity} (
             {tripData.item.locationProvince})
+            <a
+              href={`http://www.google.com/maps/place/${tripData.item.latitude},${tripData.item.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Here
+            </a>
           </p>
           <p>
             <TitleBlock>Organizer</TitleBlock>
@@ -99,6 +114,23 @@ export default function TripsDetail() {
               {alreadyParticipant ? "Unjoin trip" : "Join this trip!"}
             </Button>
           )}
+          <Map
+            style="mapbox://styles/mapbox/streets-v9"
+            containerStyle={{
+              height: "45vw",
+              width: "45vw",
+            }}
+          >
+            <Layer
+              type="symbol"
+              id="marker"
+              layout={{ "icon-image": "marker-15" }}
+            >
+              <Feature
+                coordinates={[tripData.item.longitude, tripData.item.latitude]}
+              />
+            </Layer>
+          </Map>
         </InnerDetailContainer>
       </DetailContainer>
     </div>

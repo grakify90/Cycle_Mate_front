@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import color from "./colors";
+import color from "./_colors";
 
 export const DetailContainer = styled.div`
   text-align: ${(props) => (props.primary ? "center" : "left")};

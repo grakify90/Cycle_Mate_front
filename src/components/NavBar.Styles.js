@@ -10,14 +10,18 @@ export const NavBarContainer = styled.div`
   justify-content: space-between;
 
   @media screen and (max-width: 600px) {
-      width: 100vw;
+    width: 100vw;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 50vw;
+  }
 `;
 
 export const NavBarItem = styled(NavLink)`
   text-decoration: none;
   font-family: "Courier New", Courier, monospace;
   text-transform: uppercase;
-  font-size: 4vw;
+  font-size: 4.5vw;
   color: black;
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease-in-out;
@@ -35,8 +39,8 @@ export const NavBarItem = styled(NavLink)`
   @media screen and (max-width: 600px) {
     font-size: 7vw;
   }
-  @media screen and (max-width: 1200px) {
-    font-size: 4.5vw;
+  @media screen and (min-width: 1200px) {
+    font-size: 3.6vw;
   }
 `;
 

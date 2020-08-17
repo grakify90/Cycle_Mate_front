@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import { NavBarContainer, NavBarItem } from "./NavBar.Styles";
 import { useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";

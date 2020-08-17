@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { Normalize } from "styled-normalize";
-import GlobalStyle from "./styles/GlobalStyle";
+import GlobalStyle from "./styles/_GlobalStyle";
 
 import NavBar from "./components/NavBar";
 import SignUp from "./pages/SignUp";

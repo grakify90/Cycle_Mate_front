@@ -25,6 +25,7 @@ export default (state = initialState, action) => {
       localStorage.setItem("token", token);
       return {
         ...state,
+        token: token,
         firstName: firstName,
         lastName: lastName,
         email: email,

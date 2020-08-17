@@ -29,7 +29,6 @@ export const logOut = () => ({ type: LOG_OUT });
 export const changePersonalData = (
   firstName,
   lastName,
-  email,
   aboutMe,
   gender,
   dateOfBirth
@@ -44,7 +43,6 @@ export const changePersonalData = (
         {
           firstName,
           lastName,
-          email,
           aboutMe,
           gender,
           dateOfBirth,
@@ -114,7 +112,6 @@ export const login = (email, password) => {
         email,
         password,
       });
-      console.log(response.data);
       dispatch(loginSuccess(response.data));
       dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
       dispatch(appDoneLoading());

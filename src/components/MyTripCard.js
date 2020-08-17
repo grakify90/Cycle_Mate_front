@@ -17,7 +17,7 @@ export default function MyTripCard(props) {
           {props.locationCity} ({props.locationProvince}) {props.lengthKM}km
         </p>
       </div>
-      <Link className="tripButton" to={`/detail/${props.id}`}>
+      <Link to={`/detail/${props.id}`}>
         <Button>See details</Button>
       </Link>
     </CardContainer>
