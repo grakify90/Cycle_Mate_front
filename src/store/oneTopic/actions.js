@@ -45,6 +45,7 @@ export function fetchOneTopic(topicId) {
 export function addReply(topicId, reply) {
   return async function thunk(dispatch) {
     try {
+      // console.log(reply);
       const { content, imageUrl } = reply;
       dispatch(startLoading());
       const token = localStorage.getItem("token");

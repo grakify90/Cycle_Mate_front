@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MessageBox from "../components/MessageBox";
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
@@ -10,6 +11,8 @@ import { selectAppLoading } from "../store/appState/selectors";
 
 export default function ManageAccount() {
   const user = useSelector(selectUser);
+  const [message, setMessage] = useState("");
+
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   // const [password, setPassword] = useState(user.password);
@@ -25,6 +28,10 @@ export default function ManageAccount() {
     dispatch(
       changePersonalData(firstName, lastName, aboutMe, gender, dateOfBirth)
     );
+
+    setMessage(
+      <MessageBox message="Successfully changed your personal info!" />
+    );
   }
 
   if (isLoading) {
@@ -36,6 +43,7 @@ export default function ManageAccount() {
       <form>
         <h1>Manage my account</h1>
         <FormContainer>
+          <div>{message}</div>
           <InnerFormContainer>
             <TitleBlock>First name</TitleBlock>
             <input

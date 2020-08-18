@@ -1,9 +1,11 @@
 import React from "react";
 
-export default function MessageBox() {
+export default function MessageBox(props) {
   return (
     <>
-      <div>Successfully posted!</div>
+      <div style={{ color: "green" }}>
+        <h3>{props.message}</h3>
+      </div>
     </>
   );
 }
