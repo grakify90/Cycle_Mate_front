@@ -17,7 +17,10 @@ export default function TripCard(props) {
           {props.locationCity} ({props.locationProvince}) {props.lengthKM}km
         </p>
         <p>
-          Capacity: {props.participantLength}/{props.numPeopleAllowed}
+          Capacity:{" "}
+          {props.participantLength === props.numPeopleAllowed
+            ? "FULL"
+            : `${props.participantLength} / ${props.numPeopleAllowed}`}
         </p>
       </div>
       <Link to={`/detail/${props.id}`}>

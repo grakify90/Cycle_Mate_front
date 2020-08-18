@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MessageBox from "../components/MessageBox";
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
@@ -9,6 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 export default function SignUp() {
+  const [message, setMessage] = useState("");
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -33,6 +36,8 @@ export default function SignUp() {
       signUp(firstName, lastName, email, password, aboutMe, gender, dateOfBirth)
     );
 
+    setMessage(<MessageBox message="Welcome to Cycle Mate!" />);
+
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -47,6 +52,7 @@ export default function SignUp() {
       <form>
         <h1>Sign Up</h1>
         <FormContainer>
+          <div>{message}</div>
           <InnerFormContainer>
             <TitleBlock>First name</TitleBlock>
             <input

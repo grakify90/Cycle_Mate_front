@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 
 export default function AddTrip() {
   const [message, setMessage] = useState("");
+
   const [trip, setTrip] = useState({
     title: "",
     locationCity: "",
@@ -56,7 +57,7 @@ export default function AddTrip() {
       })
     );
 
-    setMessage(<MessageBox />);
+    setMessage(<MessageBox message="Successfully added new trip!" />);
 
     setTrip({
       title: "",

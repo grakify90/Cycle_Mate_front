@@ -11,21 +11,52 @@ import { fetchOneTopic, addReply } from "../store/oneTopic/actions";
 import { selectTopicData } from "../store/oneTopic/selectors";
 import { selectToken } from "../store/user/selectors";
 import Reply from "../components/Reply";
+import axios from "axios";
+import { storage } from "../firebase";
 
 export default function CommunityDetail() {
   const { topicId } = useParams();
   const id = parseInt(topicId);
   const dispatch = useDispatch();
 
-  const [reply, setReply] = useState({ content: "", imageUrl: "" });
+  const [reply, setReply] = useState({ content: "", imageUrl: null });
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     dispatch(fetchOneTopic(id));
   }, [dispatch, id]);
 
-  const createReply = () => {
-    dispatch(addReply(id, reply));
-    setReply({ content: "", imageUrl: "" });
+  const createReply = async () => {
+    try {
+      const uploadTask = storage
+        .ref(`images/${reply.imageUrl.name}`)
+        .put(reply.imageUrl);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(reply.imageUrl.name)
+            .getDownloadURL()
+            .then((url) => {
+              setReply({ ...reply, imageUrl: url });
+              console.log(url);
+              console.log(reply);
+            })
+            .then(() => {
+              dispatch(addReply(id, reply));
+              setReply({ content: "", imageUrl: "" });
+            });
+        }
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const topicData = useSelector(selectTopicData);
@@ -81,11 +112,11 @@ export default function CommunityDetail() {
               }
             />
             <input
-              type="text"
-              value={reply.imageUrl}
+              type="file"
               placeholder="image URL (optional)"
               onChange={(event) =>
-                setReply({ ...reply, imageUrl: event.target.value })
+                event.target.files[0] &&
+                setReply({ ...reply, imageUrl: event.target.files[0] })
               }
             />
             <Button primary onClick={createReply}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import MessageBox from "../components/MessageBox";
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
@@ -10,6 +11,7 @@ import { useHistory } from "react-router-dom";
 
 export default function AddTopic() {
   const [topic, setTopic] = useState({ title: "", content: "", imageUrl: "" });
+  const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -31,6 +33,8 @@ export default function AddTopic() {
       })
     );
 
+    setMessage(<MessageBox message="Successfully posted topic!" />);
+
     setTopic({ title: "", content: "", imageUrl: "" });
   }
 
@@ -39,6 +43,7 @@ export default function AddTopic() {
       <form>
         <h1>Add a topic</h1>
         <FormContainer>
+          <div>{message}</div>
           <InnerFormContainer>
             <TitleBlock>Title</TitleBlock>
             <input

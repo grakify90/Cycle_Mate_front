@@ -140,8 +140,11 @@ export default function TripsDetail() {
           </p>
           <p>
             <TitleBlock>
-              Participants {tripData.participants.length}/
-              {tripData.item.numPeopleAllowed}
+              Participants{" "}
+              {tripData.participants.participantLength ===
+              tripData.participants.numPeopleAllowed
+                ? "(FULL)"
+                : `${tripData.participants.participantLength} / ${tripData.participants.numPeopleAllowed}`}
             </TitleBlock>
           </p>
           Average age:{" "}
