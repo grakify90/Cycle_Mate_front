@@ -5,5 +5,9 @@ export const selectTripData = (state) => {
         item: state.oneTrip.item,
         organizer: state.oneTrip.organizer,
         participants: state.oneTrip.participants,
+        latitude: state.oneTrip.latitude,
+        longitude: state.oneTrip.longitude,
+        precise: state.oneTrip.precise,
+        locationDetails: state.oneTrip.locationDetails,
       };
 };
