@@ -11,7 +11,6 @@ import { fetchOneTopic, addReply } from "../store/oneTopic/actions";
 import { selectTopicData } from "../store/oneTopic/selectors";
 import { selectToken } from "../store/user/selectors";
 import Reply from "../components/Reply";
-import axios from "axios";
 import { storage } from "../firebase";
 
 export default function CommunityDetail() {
@@ -44,12 +43,9 @@ export default function CommunityDetail() {
             .child(reply.imageUrl.name)
             .getDownloadURL()
             .then((url) => {
-              setReply({ ...reply, imageUrl: url });
-              console.log(url);
-              console.log(reply);
+              dispatch(addReply(id, { ...reply, imageUrl: url }));
             })
             .then(() => {
-              dispatch(addReply(id, reply));
               setReply({ content: "", imageUrl: "" });
             });
         }
