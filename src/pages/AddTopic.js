@@ -8,6 +8,7 @@ import { addTopic } from "../store/topics/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { storage } from "../firebase";
 
 export default function AddTopic() {
   const [topic, setTopic] = useState({ title: "", content: "", imageUrl: "" });
@@ -22,20 +23,34 @@ export default function AddTopic() {
     }
   }, [dispatch, token, history]);
 
-  function submitForm(event) {
+  async function submitForm(event) {
     event.preventDefault();
+    try {
+      const uploadTask = storage
+        .ref(`images/${topic.imageUrl.name}`)
+        .put(topic.imageUrl);
 
-    dispatch(
-      addTopic({
-        title: topic.title,
-        content: topic.content,
-        imageUrl: topic.imageUrl,
-      })
-    );
-
-    setMessage(<MessageBox message="Successfully posted topic!" />);
-
-    setTopic({ title: "", content: "", imageUrl: "" });
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref("images")
+            .child(topic.imageUrl.name)
+            .getDownloadURL()
+            .then((url) => {
+              dispatch(addTopic({ ...topic, imageUrl: url }));
+              setMessage(<MessageBox message="Successfully posted topic!" />);
+              setTopic({ title: "", content: "", imageUrl: "" });
+            });
+        }
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   return (
@@ -68,15 +83,13 @@ export default function AddTopic() {
             />
           </InnerFormContainer>{" "}
           <InnerFormContainer>
-            <TitleBlock>Image URL</TitleBlock>
+            <TitleBlock>Image</TitleBlock>
             <input
-              value={topic.imageUrl}
+              type="file"
               onChange={(event) =>
-                setTopic({ ...topic, imageUrl: event.target.value })
+                event.target.files[0] &&
+                setTopic({ ...topic, imageUrl: event.target.files[0] })
               }
-              type="text"
-              placeholder="(optional)"
-              required
             />
           </InnerFormContainer>
         </FormContainer>
