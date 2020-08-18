@@ -10,6 +10,9 @@ const initialState = {
   item: {},
   organizer: {},
   participants: [],
+  latitude: 0,
+  longitude: 0,
+  precise: false,
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +25,10 @@ export default (state = initialState, action) => {
         participants: participants,
         organizer: organizer,
         loading: false,
+        latitude: trip.latitude,
+        longitude: trip.longitude,
+        precise: trip.precise,
+        locationDetails: trip.locationDetails,
       };
     }
     case ADD_PARTICIPANT: {

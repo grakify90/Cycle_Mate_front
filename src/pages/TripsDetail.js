@@ -10,14 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOneTrip, changeParticipant } from "../store/oneTrip/actions";
 import { selectTripData } from "../store/oneTrip/selectors";
 import { selectUser, selectToken } from "../store/user/selectors";
-import ReactMapboxGl, { Layer, Feature } from "react-mapbox-gl";
-
-const accessToken =
-  "pk.eyJ1IjoiaGVsbG9rbHZlIiwiYSI6ImNrZHlwazkxYTNkc2kycnRhZnQxc2FvM3oifQ.X3DrrVAEgxtRpcO9kbYD_w";
-
-const Map = ReactMapboxGl({
-  accessToken,
-});
+import ReactMapboxGl, { Layer, Marker } from "react-mapbox-gl";
 
 export default function TripsDetail() {
   const { tripId } = useParams();
@@ -40,28 +33,62 @@ export default function TripsDetail() {
     return null;
   }
 
+  const accessToken =
+    "pk.eyJ1IjoiaGVsbG9rbHZlIiwiYSI6ImNrZHlwazkxYTNkc2kycnRhZnQxc2FvM3oifQ.X3DrrVAEgxtRpcO9kbYD_w";
+
+  const Map = ReactMapboxGl({
+    accessToken,
+  });
+
   const alreadyParticipant = tripData.participants.find((participant) => {
     return user.id === participant.id;
   });
 
+  const coordinate = [tripData.longitude, tripData.latitude];
+
   return (
     <div>
-      {" "}
       <h1>{tripData.item.title}</h1>{" "}
       <DetailContainer>
         <InnerDetailContainer>
-          <p>
+          <div>
             <TitleBlock>Location</TitleBlock>
-            <br /> {tripData.item.locationCity} (
-            {tripData.item.locationProvince})
-            <a
-              href={`http://www.google.com/maps/place/${tripData.item.latitude},${tripData.item.longitude}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Here
-            </a>
-          </p>
+            <br />{" "}
+            <p>
+              {tripData.locationDetails
+                ? tripData.locationDetails
+                : `${tripData.item.locationCity}, ${tripData.item.locationProvince}`}
+            </p>
+            {tripData.latitude !== 0 && (
+              <Map
+                style="mapbox://styles/mapbox/streets-v9"
+                containerStyle={{
+                  height: "40vh",
+                  width: "100%",
+                }}
+                center={coordinate}
+              >
+                {tripData.item.precise ? (
+                  <Layer
+                    type="circle"
+                    id="marker"
+                    paint={{
+                      "circle-color": "#ff5200",
+                      "circle-stroke-width": 2,
+                      "circle-stroke-color": "#fff",
+                      "circle-stroke-opacity": 1,
+                    }}
+                  >
+                    <Marker coordinates={coordinate} />
+                  </Layer>
+                ) : (
+                  <Layer>
+                    <Marker coordinates={coordinate} />
+                  </Layer>
+                )}
+              </Map>
+            )}
+          </div>
           <p>
             <TitleBlock>Organizer</TitleBlock>
             <br /> {tripData.organizer.firstName} {tripData.organizer.lastName}
@@ -114,23 +141,6 @@ export default function TripsDetail() {
               {alreadyParticipant ? "Unjoin trip" : "Join this trip!"}
             </Button>
           )}
-          <Map
-            style="mapbox://styles/mapbox/streets-v9"
-            containerStyle={{
-              height: "45vw",
-              width: "45vw",
-            }}
-          >
-            <Layer
-              type="symbol"
-              id="marker"
-              layout={{ "icon-image": "marker-15" }}
-            >
-              <Feature
-                coordinates={[tripData.item.longitude, tripData.item.latitude]}
-              />
-            </Layer>
-          </Map>
         </InnerDetailContainer>
       </DetailContainer>
     </div>
