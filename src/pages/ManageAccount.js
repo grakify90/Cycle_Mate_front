@@ -69,11 +69,11 @@ export default function ManageAccount() {
             <TitleBlock>Gender</TitleBlock>
             <div className="radioButton">
               {" "}
-              <input type="radio" onChange={() => setGender("male")} />
+              <input type="radio" onChange={() => setGender("m")} />
               <label>Male</label>
-              <input type="radio" onChange={() => setGender("female")} />
+              <input type="radio" onChange={() => setGender("f")} />
               <label>Female</label>
-              <input type="radio" onChange={() => setGender("other")} />
+              <input type="radio" onChange={() => setGender("o")} />
               <label>Other</label>
             </div>
           </InnerFormContainer>
