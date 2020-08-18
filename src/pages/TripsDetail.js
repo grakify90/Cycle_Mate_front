@@ -44,6 +44,32 @@ export default function TripsDetail() {
     return user.id === participant.id;
   });
 
+  function age(birthDateString) {
+    var now = moment();
+    var birthDate = moment(birthDateString, "YYYY-MM-DD");
+    var yearDiff = moment.duration(now - birthDate).as("years");
+    return Math.floor(yearDiff);
+  }
+
+  const participantsAgesArray = tripData.participants.map((participant) => {
+    return age(participant.dateOfBirth);
+  });
+
+  const agesParticipantsTotal = participantsAgesArray.reduce(
+    (total, next) => total + next,
+    0
+  );
+
+  const participantsMale = tripData.participants.filter((participant) => {
+    return participant.gender === "m";
+  });
+  const participantsFemale = tripData.participants.filter((participant) => {
+    return participant.gender === "f";
+  });
+  const participantsOther = tripData.participants.filter((participant) => {
+    return participant.gender === "o";
+  });
+
   const coordinate = [tripData.longitude, tripData.latitude];
 
   return (
@@ -118,7 +144,22 @@ export default function TripsDetail() {
               {tripData.item.numPeopleAllowed}
             </TitleBlock>
           </p>
-          <br />{" "}
+          Average age:{" "}
+          {parseInt(agesParticipantsTotal / tripData.participants.length)}
+          <br />
+          Percentage: male(
+          {parseInt(
+            (participantsMale.length / tripData.participants.length) * 100
+          )}
+          ) female(
+          {parseInt(
+            (participantsFemale.length / tripData.participants.length) * 100
+          )}
+          ) other(
+          {parseInt(
+            (participantsOther.length / tripData.participants.length) * 100
+          )}
+          )
           {tripData.participants.map((participant) => {
             return (
               <div key={Math.random()}>

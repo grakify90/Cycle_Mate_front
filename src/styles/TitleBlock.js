@@ -4,6 +4,9 @@ import color from "./_colors";
 export const TitleBlock = styled.span`
   background-color: ${(props) =>
     props.primary ? color.darkapple : color.darklila};
+  display: inline-block;
+  margin: 3px 0;
+  height: 18px;
   padding: 1px 18px;
   color: white;
   font-family: "Courier New", Courier, monospace;
