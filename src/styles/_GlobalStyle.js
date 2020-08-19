@@ -19,6 +19,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+div{
+
+  input {
+    font-family: "Courier New", Courier, monospace;
+  }
+
+  textarea {
+    font-family: "Courier New", Courier, monospace;
+  }
+}
 }
 
 `;

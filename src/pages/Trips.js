@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "../styles/Container";
+import { Button } from "../styles/Button";
 import {
   FilterContainer,
   InnerFilterContainer,
@@ -17,7 +18,11 @@ export default function Trips() {
 
   useEffect(() => {
     dispatch(fetchTrips());
-  }, [dispatch]);
+  }, []);
+
+  const fetchMore = () => {
+    dispatch(fetchTrips());
+  };
 
   const allTrips = useSelector(selectTrips);
   const isLoading = useSelector(selectTripsLoading);
@@ -110,6 +115,7 @@ export default function Trips() {
           />
         );
       })}
+      <Button onClick={fetchMore}>More posts</Button>
     </Container>
   );
 }

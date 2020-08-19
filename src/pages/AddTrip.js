@@ -8,9 +8,14 @@ import { addTrip } from "../store/trips/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 export default function AddTrip() {
   const [message, setMessage] = useState("");
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   const [trip, setTrip] = useState({
     title: "",
@@ -39,6 +44,8 @@ export default function AddTrip() {
 
   function submitForm(event) {
     event.preventDefault();
+
+    const date = moment(trip.date).format("MM-DD-YYYY");
     dispatch(
       addTrip({
         title: trip.title,
@@ -47,7 +54,7 @@ export default function AddTrip() {
         streetName: trip.streetName,
         streetNumber: trip.streetNumber,
         postalCode: trip.postalCode,
-        date: trip.date,
+        date: date,
         lengthKM: trip.lengthKM,
         numPeopleAllowed: trip.numPeopleAllowed,
         typeBike: trip.typeBike,
@@ -58,7 +65,7 @@ export default function AddTrip() {
     );
 
     setMessage(<MessageBox message="Successfully added new trip!" />);
-
+    refreshPage();
     setTrip({
       title: "",
       locationCity: "",
@@ -173,7 +180,10 @@ export default function AddTrip() {
               placeholder="dd-mm-yyyy"
               value={trip.date}
               onChange={(event) =>
-                setTrip({ ...trip, date: event.target.value })
+                setTrip({
+                  ...trip,
+                  date: event.target.value,
+                })
               }
             />
           </InnerFormContainer>
