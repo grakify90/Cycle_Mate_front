@@ -33,8 +33,7 @@ export default function TripsDetail() {
     return null;
   }
 
-  const accessToken =
-    "pk.eyJ1IjoiaGVsbG9rbHZlIiwiYSI6ImNrZHlwazkxYTNkc2kycnRhZnQxc2FvM3oifQ.X3DrrVAEgxtRpcO9kbYD_w";
+  const accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
   const Map = ReactMapboxGl({
     accessToken,
@@ -46,7 +45,7 @@ export default function TripsDetail() {
 
   function age(birthDateString) {
     var now = moment();
-    var birthDate = moment(birthDateString, "YYYY-MM-DD");
+    var birthDate = moment(birthDateString, "DD-MM-YYYY");
     var yearDiff = moment.duration(now - birthDate).as("years");
     return Math.floor(yearDiff);
   }

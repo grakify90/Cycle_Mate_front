@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
     case FETCHED_TRIPS: {
       return {
         ...state,
-        items: action.payload,
+        items: [...state.items, ...action.payload],
         loading: false,
       };
     }

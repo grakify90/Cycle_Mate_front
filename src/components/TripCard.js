@@ -2,13 +2,15 @@ import React from "react";
 import { CardContainer, CardCircle } from "../styles/CardStyles";
 import { Link } from "react-router-dom";
 import { Button } from "../styles/Button";
+import moment from "moment";
 
 export default function TripCard(props) {
+  const date = moment(props.date).format("DD-MM-YYYY");
   return (
     <CardContainer>
       <CardCircle>
-        <p>{props.date}</p>
-        <p>{props.startingTime}</p>
+        <p>{date}</p>
+        <p>{props.startingTime}h</p>
       </CardCircle>
       <div>
         {" "}

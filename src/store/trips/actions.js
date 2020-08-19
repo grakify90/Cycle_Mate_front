@@ -7,10 +7,10 @@ export const START_LOADING = "START_LOADING";
 export const ADD_TRIP = "ADD_TRIP";
 
 const compare = (a, b) => {
-  if (a.date > b.date) {
+  if (a.date < b.date) {
     return -1;
   }
-  if (a.date < b.date) {
+  if (a.date > b.date) {
     return 1;
   }
   return 0;
@@ -85,8 +85,6 @@ export function addTrip(newTrip) {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-
-      console.log(data.data);
       dispatch(addNewTrip(data.data));
     } catch (error) {
       console.log(error.message);
@@ -94,12 +92,16 @@ export function addTrip(newTrip) {
   };
 }
 export function fetchTrips() {
-  return async function thunk(dispatch) {
+  return async function thunk(dispatch, getState) {
     try {
       dispatch(startLoading());
-      const data = await axios.get(`${apiUrl}/trips`);
-      const dataSortedByNewestFirst = data.data.sort(compare);
-      dispatch(fetchAllTrips(dataSortedByNewestFirst));
+      const state = getState();
+      const tripCount = state.trips.items.length;
+      console.log(tripCount);
+      const data = await axios.get(
+        `${apiUrl}/trips?offset=${tripCount}&limit=5`
+      );
+      dispatch(fetchAllTrips(data.data.rows));
     } catch (error) {
       console.log(error.message);
     }
