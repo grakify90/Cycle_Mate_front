@@ -97,9 +97,8 @@ export function fetchTrips() {
       dispatch(startLoading());
       const state = getState();
       const tripCount = state.trips.items.length;
-      console.log(tripCount);
       const data = await axios.get(
-        `${apiUrl}/trips?offset=${tripCount}&limit=5`
+        `${apiUrl}/trips?offset=${tripCount}&limit=3`
       );
       dispatch(fetchAllTrips(data.data.rows));
     } catch (error) {

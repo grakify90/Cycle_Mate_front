@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTrips } from "../store/trips/actions";
 import { selectTrips, selectTripsLoading } from "../store/trips/selectors";
 import TripCard from "../components/TripCard";
+// import Pagination from "../components/Pagination";
 
 export default function Trips() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function Trips() {
 
   useEffect(() => {
     dispatch(fetchTrips());
-  }, []);
+  }, [dispatch]);
 
   const fetchMore = () => {
     dispatch(fetchTrips());
@@ -26,6 +27,18 @@ export default function Trips() {
 
   const allTrips = useSelector(selectTrips);
   const isLoading = useSelector(selectTripsLoading);
+
+  // //pagination
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [postsPerPage, setPostsPerPage] = useState(3);
+
+  // //get current posts
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentPosts = allTrips.slice(indexOfFirstPost, indexOfLastPost);
+
+  // //change page
+  // const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (isLoading) {
     return null;
@@ -73,32 +86,7 @@ export default function Trips() {
             <option value="Touring">Touring</option>
           </select>
         </InnerFilterContainer>
-        {/* <div>
-          <label className="filtertripBar">Province:</label>
-
-          <select
-            value={filter.locationProvince}
-            onChange={(event) =>
-              setFilter({ ...filter, locationProvince: event.target.value })
-            }
-          >
-            <option value="All">All</option>
-            <option value="Zuid-Holland">Zuid-Holland</option>
-            <option value="Noord-Holland">Noord-Holland</option>
-            <option value="Noord-Brabant">Noord-Brabant</option>
-            <option value="Gelderland">Gelderland</option>
-            <option value="Utrecht">Utrecht</option>
-            <option value="Overijssel">Overijssel</option>
-            <option value="Limburg">Limburg</option>
-            <option value="Friesland">Friesland</option>
-            <option value="Groningen">Groningen</option>
-            <option value="Drenthe">Drenthe</option>
-            <option value="Flevoland">Flevoland</option>
-            <option value="Zeeland">Zeeland</option>
-          </select>
-        </div> */}
       </FilterContainer>
-
       {filterTrips.map((trip, index) => {
         return (
           <TripCard
@@ -115,7 +103,12 @@ export default function Trips() {
           />
         );
       })}
-      <Button onClick={fetchMore}>More posts</Button>
+      {/* <Pagination
+        postsPerPage={postsPerPage}
+        totalPosts={allTrips.length}
+        paginate={paginate}
+      /> */}
+      <Button onClick={fetchMore}>More trips</Button>
     </Container>
   );
 }
