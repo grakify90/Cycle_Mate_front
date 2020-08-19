@@ -141,28 +141,54 @@ export default function TripsDetail() {
           <p>
             <TitleBlock>
               Participants{" "}
-              {tripData.participants.participantLength ===
-              tripData.participants.numPeopleAllowed
+              {tripData.participants.length === tripData.item.numPeopleAllowed
                 ? "(FULL)"
-                : `${tripData.participants.participantLength} / ${tripData.participants.numPeopleAllowed}`}
+                : `${tripData.participants.length} / ${tripData.item.numPeopleAllowed}`}
             </TitleBlock>
           </p>
-          Average age:{" "}
-          {parseInt(agesParticipantsTotal / tripData.participants.length)}
-          <br />
-          Percentage: male(
-          {parseInt(
-            (participantsMale.length / tripData.participants.length) * 100
-          )}
-          ) female(
-          {parseInt(
-            (participantsFemale.length / tripData.participants.length) * 100
-          )}
-          ) other(
-          {parseInt(
-            (participantsOther.length / tripData.participants.length) * 100
-          )}
-          )
+          <span
+            style={{
+              fontWeight: "bold",
+            }}
+          >
+            Average age:{" "}
+            {parseInt(agesParticipantsTotal / tripData.participants.length)}
+          </span>
+          <div
+            style={{
+              width: "100%",
+              display: "grid",
+              gridTemplateColumns: `${parseInt(
+                (participantsMale.length / tripData.participants.length) * 100
+              )}% ${parseInt(
+                (participantsFemale.length / tripData.participants.length) * 100
+              )}% ${parseInt(
+                (participantsOther.length / tripData.participants.length) * 100
+              )}%`,
+            }}
+          >
+            <span style={{ backgroundColor: "green" }}>
+              {parseInt(
+                (participantsMale.length / tripData.participants.length) * 100
+              ) > 0
+                ? "Male"
+                : ""}
+            </span>
+            <span style={{ backgroundColor: "hotpink" }}>
+              {parseInt(
+                (participantsFemale.length / tripData.participants.length) * 100
+              ) > 0
+                ? "Female"
+                : ""}
+            </span>
+            <span style={{ backgroundColor: "purple" }}>
+              {parseInt(
+                (participantsOther.length / tripData.participants.length) * 100
+              ) > 0
+                ? "Other"
+                : ""}
+            </span>
+          </div>
           {tripData.participants.map((participant) => {
             return (
               <div key={Math.random()}>
