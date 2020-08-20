@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import TripCard from "../components/TripCard";
+import { fetchTrips } from "../store/trips/actions";
+import { selectTrips, selectTripsLoading } from "../store/trips/selectors";
+// import Pagination from "../components/Pagination";
+
 import { Container } from "../styles/Container";
 import { Button } from "../styles/Button";
 import {
@@ -7,11 +13,6 @@ import {
   FilterBar,
   Slider,
 } from "./Trips.Styles";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchTrips } from "../store/trips/actions";
-import { selectTrips, selectTripsLoading } from "../store/trips/selectors";
-import TripCard from "../components/TripCard";
-// import Pagination from "../components/Pagination";
 
 export default function Trips() {
   const dispatch = useDispatch();

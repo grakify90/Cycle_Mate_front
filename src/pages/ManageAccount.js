@@ -1,16 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MessageBox from "../components/MessageBox";
+import { changePersonalData } from "../store/user/actions";
+import { selectUser } from "../store/user/selectors";
+import { selectAppLoading } from "../store/appState/selectors";
+
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
 import { InnerFormContainer } from "../styles/InnerFormContainer";
-import { changePersonalData } from "../store/user/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "../store/user/selectors";
-import { selectAppLoading } from "../store/appState/selectors";
 
 export default function ManageAccount() {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectAppLoading);
   const user = useSelector(selectUser);
+
+  //success message when user submits changes
   const [message, setMessage] = useState("");
 
   const [firstName, setFirstName] = useState(user.firstName);
@@ -19,8 +24,6 @@ export default function ManageAccount() {
   const [aboutMe, setAboutMe] = useState(user.aboutMe);
   const [gender, setGender] = useState(user.gender);
   const [dateOfBirth, setDateOfBirth] = useState(user.dateOfBirth);
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectAppLoading);
 
   function submitForm(event) {
     event.preventDefault();

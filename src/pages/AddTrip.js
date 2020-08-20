@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from "react";
+import moment from "moment";
 import MessageBox from "../components/MessageBox";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { addTrip } from "../store/trips/actions";
+import { selectToken } from "../store/user/selectors";
+
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
 import { InnerFormContainer } from "../styles/InnerFormContainer";
-import { addTrip } from "../store/trips/actions";
-import { selectToken } from "../store/user/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import moment from "moment";
 
 export default function AddTrip() {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  const history = useHistory();
+
+  useEffect(() => {
+    if (token === null) {
+      history.push("/");
+    }
+  }, [dispatch, token, history]);
+
   const [message, setMessage] = useState("");
 
+  //Refresh page so that pagination on /agenda will start again and the new trip will be sorted by date correctly
   function refreshPage() {
     window.location.reload(false);
   }
@@ -32,15 +44,6 @@ export default function AddTrip() {
     tempo: "",
     description: "",
   });
-  const dispatch = useDispatch();
-  const token = useSelector(selectToken);
-  const history = useHistory();
-
-  useEffect(() => {
-    if (token === null) {
-      history.push("/");
-    }
-  }, [dispatch, token, history]);
 
   function submitForm(event) {
     event.preventDefault();

@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { storage } from "../firebase";
 import MessageBox from "../components/MessageBox";
+import { addTopic } from "../store/topics/actions";
+import { selectToken } from "../store/user/selectors";
+
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
 import { InnerFormContainer } from "../styles/InnerFormContainer";
-import { addTopic } from "../store/topics/actions";
-import { selectToken } from "../store/user/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { storage } from "../firebase";
 
 export default function AddTopic() {
-  const [topic, setTopic] = useState({ title: "", content: "", imageUrl: "" });
-  const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -23,9 +22,13 @@ export default function AddTopic() {
     }
   }, [dispatch, token, history]);
 
+  const [topic, setTopic] = useState({ title: "", content: "", imageUrl: "" });
+  const [message, setMessage] = useState("");
+
   async function submitForm(event) {
     event.preventDefault();
     try {
+      //Uploading local file to Firebase and enpoint and receiving URL back
       const uploadTask = storage
         .ref(`images/${topic.imageUrl.name}`)
         .put(topic.imageUrl);
@@ -93,7 +96,6 @@ export default function AddTopic() {
             />
           </InnerFormContainer>
         </FormContainer>
-
         <div>
           <Button onClick={submitForm}>Submit</Button>
         </div>

@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Link } from "react-router-dom";
+import { login } from "../store/user/actions";
+import { selectToken } from "../store/user/selectors";
+
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
 import { InnerFormContainer } from "../styles/InnerFormContainer";
-import { login } from "../store/user/actions";
-import { selectToken } from "../store/user/selectors";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
 
 export default function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const history = useHistory();
@@ -20,6 +19,9 @@ export default function SignUp() {
       history.push("/");
     }
   }, [token, history]);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   function submitForm(event) {
     event.preventDefault();

@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+//Library to display MapBox
+import ReactMapboxGl, { Layer, Marker } from "react-mapbox-gl";
+import { fetchOneTrip, changeParticipant } from "../store/oneTrip/actions";
+import { selectTripData } from "../store/oneTrip/selectors";
+import { selectUser, selectToken } from "../store/user/selectors";
+
 import { DetailContainer } from "../styles/DetailContainer";
 import { Button } from "../styles/Button";
 import { InnerDetailContainer } from "../styles/InnerDetailContainer";
 import { TitleBlock } from "../styles/TitleBlock";
 import { Participant, HiddenAboutMe } from "./TripsDetail.Styles";
-import moment from "moment";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchOneTrip, changeParticipant } from "../store/oneTrip/actions";
-import { selectTripData } from "../store/oneTrip/selectors";
-import { selectUser, selectToken } from "../store/user/selectors";
-import ReactMapboxGl, { Layer, Marker } from "react-mapbox-gl";
 
 export default function TripsDetail() {
   const { tripId } = useParams();
@@ -33,16 +35,19 @@ export default function TripsDetail() {
     return null;
   }
 
+  //Necessary data to display MapBox map
   const accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
-
   const Map = ReactMapboxGl({
     accessToken,
   });
+  const coordinate = [tripData.longitude, tripData.latitude];
 
+  //Check if user is already a participant to find out whether to dipslay "join" or "unjoin" on button
   const alreadyParticipant = tripData.participants.find((participant) => {
     return user.id === participant.id;
   });
 
+  //Necessary data handling to display stats about average age and gender ratio of trip
   function age(birthDateString) {
     var now = moment();
     var birthDate = moment(birthDateString, "DD-MM-YYYY");
@@ -53,7 +58,6 @@ export default function TripsDetail() {
   const participantsAgesArray = tripData.participants.map((participant) => {
     return age(participant.dateOfBirth);
   });
-
   const agesParticipantsTotal = participantsAgesArray.reduce(
     (total, next) => total + next,
     0
@@ -68,8 +72,6 @@ export default function TripsDetail() {
   const participantsOther = tripData.participants.filter((participant) => {
     return participant.gender === "o";
   });
-
-  const coordinate = [tripData.longitude, tripData.latitude];
 
   return (
     <div>

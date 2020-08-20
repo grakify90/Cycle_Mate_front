@@ -1,3 +1,5 @@
+//This is an endpoint set up with Firebase to upload images and get a URL right back
+
 import firebase from "firebase/app";
 import "firebase/storage";
 
