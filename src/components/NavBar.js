@@ -15,7 +15,7 @@ export default function NavBar() {
       {loginLogoutControls}
       <NavBarContainer>
         <NavBarItem activeClassName="activeLink" exact to="/">
-          Home
+          <h1>Cycle Mate</h1>
         </NavBarItem>
         <NavBarItem activeClassName="activeLink" to="/agenda">
           Agenda
@@ -23,6 +23,11 @@ export default function NavBar() {
         <NavBarItem activeClassName="activeLink" to="/community">
           Community
         </NavBarItem>
+        {token && (
+          <NavBarItem activeClassName="activeLink" to="/mypage">
+            My Page
+          </NavBarItem>
+        )}
       </NavBarContainer>
     </>
   );
