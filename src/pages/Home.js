@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Container } from "../styles/Container";
 
@@ -15,8 +16,11 @@ export default function Home() {
         community and ask questions or share your experiences on the message
         board... Anything to spread the love for cycling!
       </p>
+      <p>
+        Sign up <Link to="/signup">here</Link>!
+      </p>
       <img
-        src="https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2015/08/GettyImages-168831316-650x428.jpg"
+        src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/05/11/18/cycling-guide.jpg?width=990"
         alt="Cycle Mate"
       />
     </Container>

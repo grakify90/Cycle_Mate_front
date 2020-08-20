@@ -1,9 +1,10 @@
 import React from "react";
-import { NavBarContainer, NavBarItem } from "./NavBar.Styles";
 import { useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
+
+import { NavBarContainer, NavBarItem, NavBarCycleMate } from "./NavBar.Styles";
 
 export default function NavBar() {
   const token = useSelector(selectToken);
@@ -14,9 +15,9 @@ export default function NavBar() {
     <>
       {loginLogoutControls}
       <NavBarContainer>
-        <NavBarItem activeClassName="activeLink" exact to="/">
+        <NavBarCycleMate activeClassName="activeLink" exact to="/">
           <h1>Cycle Mate</h1>
-        </NavBarItem>
+        </NavBarCycleMate>
         <NavBarItem activeClassName="activeLink" to="/agenda">
           Agenda
         </NavBarItem>

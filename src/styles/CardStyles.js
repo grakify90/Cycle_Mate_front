@@ -4,11 +4,13 @@ import color from "../styles/_colors";
 export const CardContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 2.5fr 1fr;
-  border: 1px solid black;
+  border: 1px solid ${color.greysmoke};
+  background-color: 	#E8E8E8;
   align-items: center;
-  padding: 2vw;
+  padding: 10px;
   box-shadow: 10px 10px 0px 1px rgba(0, 0, 0, 0.75);
-  margin: 4vh 0;
+  border-radius: 5px;
+  margin: 15px 0;
   transition: all 0.2s ease-in-out;
   p {
     text-decoration: none;
@@ -22,6 +24,7 @@ export const CardContainer = styled.div`
         :hover {
           transform: none;
         }
+  
       
 `;
 

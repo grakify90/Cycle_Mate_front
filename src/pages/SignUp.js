@@ -5,6 +5,7 @@ import MessageBox from "../components/MessageBox";
 import { signUp } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 
+import { Container } from "../styles/Container";
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { FormContainer } from "../styles/FormContainer";
@@ -50,7 +51,7 @@ export default function SignUp() {
   }
 
   return (
-    <div>
+    <Container>
       <form>
         <h1>Sign Up</h1>
         <FormContainer>
@@ -133,6 +134,6 @@ export default function SignUp() {
           </Button>
         </div>
       </form>
-    </div>
+    </Container>
   );
 }
