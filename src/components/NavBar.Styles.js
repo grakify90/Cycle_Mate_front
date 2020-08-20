@@ -4,17 +4,18 @@ import { NavLink } from "react-router-dom";
 export const NavBarContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  width: 60vw;
-  margin: 20px auto;
+  justify-content: flex-end;
+  align-items: center;
+  height: 10vh;
+  margin: 20px 20px;
   justify-content: space-between;
 
-  @media screen and (max-width: 600px) {
-    width: 100vw;
-  }
-  @media screen and (min-width: 1200px) {
-    width: 50vw;
-  }
+  // @media screen and (max-width: 600px) {
+  //   width: 100vw;
+  // }
+  // @media screen and (min-width: 1200px) {
+  //   width: 50vw;
+  // }
 `;
 
 export const NavBarItem = styled(NavLink)`
@@ -25,6 +26,11 @@ export const NavBarItem = styled(NavLink)`
   color: black;
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease-in-out;
+
+  h1 {
+    font-size: 70%;
+    text-transform: none;
+  }
 
   .activeLink {
     font-weight: bold;
