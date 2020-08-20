@@ -1,25 +1,19 @@
 import React, { useEffect } from "react";
-import { Container } from "../styles/Container";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import MyTripCard from "../components/MyTripCard";
 import { fetchTripsUser } from "../store/trips/actions";
 import {
   selectSpecificUserTrips,
   selectTripsLoading,
 } from "../store/trips/selectors";
 import { selectToken } from "../store/user/selectors";
-import MyTripCard from "../components/MyTripCard";
-import { useHistory } from "react-router-dom";
+
+import { Container } from "../styles/Container";
 
 export default function MyAgenda() {
   const dispatch = useDispatch();
   const history = useHistory();
-
-  useEffect(() => {
-    dispatch(fetchTripsUser());
-  }, [dispatch]);
-
-  const userTrips = useSelector(selectSpecificUserTrips);
-  const isLoading = useSelector(selectTripsLoading);
   const token = useSelector(selectToken);
 
   useEffect(() => {
@@ -27,6 +21,13 @@ export default function MyAgenda() {
       history.push("/");
     }
   }, [token, history]);
+
+  useEffect(() => {
+    dispatch(fetchTripsUser());
+  }, [dispatch]);
+
+  const userTrips = useSelector(selectSpecificUserTrips);
+  const isLoading = useSelector(selectTripsLoading);
 
   if (isLoading) {
     return null;

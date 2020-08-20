@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
+import moment from "moment";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import Reply from "../components/Reply";
+import { storage } from "../firebase";
+import { fetchOneTopic, addReply } from "../store/oneTopic/actions";
+import { selectTopicData } from "../store/oneTopic/selectors";
+import { selectToken } from "../store/user/selectors";
+
 import { DetailContainer } from "../styles/DetailContainer";
 import { InnerDetailContainer } from "../styles/InnerDetailContainer";
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
 import { TopicContent, ReplyContainer } from "./CommunityDetail.Styles";
-import moment from "moment";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchOneTopic, addReply } from "../store/oneTopic/actions";
-import { selectTopicData } from "../store/oneTopic/selectors";
-import { selectToken } from "../store/user/selectors";
-import Reply from "../components/Reply";
-import { storage } from "../firebase";
 
 export default function CommunityDetail() {
   const { topicId } = useParams();
@@ -19,6 +20,8 @@ export default function CommunityDetail() {
   const dispatch = useDispatch();
 
   const [reply, setReply] = useState({ content: "", imageUrl: null });
+
+  // progress holds the state of uploading and receiving back the URL (in percentage)
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -27,6 +30,7 @@ export default function CommunityDetail() {
 
   const createReply = async () => {
     try {
+      //Uploading local file to Firebase and enpoint and receiving URL back
       const uploadTask = storage
         .ref(`images/${reply.imageUrl.name}`)
         .put(reply.imageUrl);
@@ -67,6 +71,7 @@ export default function CommunityDetail() {
     return null;
   }
 
+  //newest replies will show up on the top
   const compare = (a, b) => {
     if (a.createdAt > b.createdAt) {
       return -1;

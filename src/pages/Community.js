@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Container } from "../styles/Container";
-import { Button } from "../styles/Button";
 import { useDispatch, useSelector } from "react-redux";
+import TopicCard from "../components/TopicCard";
 import { fetchTopics } from "../store/topics/actions";
 import { selectTopics, selectTopicsLoading } from "../store/topics/selectors";
 import { selectToken } from "../store/user/selectors";
-import TopicCard from "../components/TopicCard";
+
+import { Container } from "../styles/Container";
+import { Button } from "../styles/Button";
 
 export default function Community() {
   const dispatch = useDispatch();
