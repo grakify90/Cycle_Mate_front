@@ -36,8 +36,10 @@ export default function TripsDetail() {
   }
 
   //Necessary data to display MapBox map
+  // const accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+
+  //Netlify local variable doesn't work so
   const accessToken =
-    process.env.REACT_APP_MAPBOX_ACCESS_TOKEN ||
     "pk.eyJ1IjoiaGVsbG9rbHZlIiwiYSI6ImNrZHlwazkxYTNkc2kycnRhZnQxc2FvM3oifQ.X3DrrVAEgxtRpcO9kbYD_w";
   const Map = ReactMapboxGl({
     accessToken,

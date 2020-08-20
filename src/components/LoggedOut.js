@@ -1,16 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { NavButton, NavBarItem } from "./NavBar.Styles";
+import { NavButton } from "./NavBar.Styles";
+import color from "../styles/_colors";
 
 export default function LoggedOut() {
   return (
-    <>
-      <NavBarItem activeClassName="activeLink" to="/mypage">
-        My Page
-      </NavBarItem>
+    <div style={{ backgroundColor: `${color.whitesmoke}` }}>
       <NavLink to="/login">
         <NavButton>Log in</NavButton>
       </NavLink>
-    </>
+    </div>
   );
 }

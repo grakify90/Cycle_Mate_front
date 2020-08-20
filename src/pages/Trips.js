@@ -109,7 +109,9 @@ export default function Trips() {
         totalPosts={allTrips.length}
         paginate={paginate}
       /> */}
-      <Button onClick={fetchMore}>More trips</Button>
+      <Button style={{ marginTop: "10px" }} onClick={fetchMore}>
+        More trips
+      </Button>
     </Container>
   );
 }

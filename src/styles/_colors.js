@@ -6,7 +6,10 @@ const color = {
   lila: "#c3aed6",
   darklila: "#8675a9",
   darkpurple: "#45046a",
+  whitesmoke: "#f5f5f5",
+  greysmoke: "#bebebe",
   lightgrey: "#b0b0b0",
+  grey: "#808080",
   darkgrey: "#696969",
   darkestgrey: "#494949",
 };

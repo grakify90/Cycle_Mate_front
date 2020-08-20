@@ -8,7 +8,9 @@ export const FilterContainer = styled.div`
   width: 80%;
   margin: 0 auto;
   box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.75);
-  background-color: ${color.lightgrey};
+  background-color: ${color.whitesmoke};
+  border: 1px ${color.greysmoke} solid;
+  border-radius: 5px;
 `;
 
 export const InnerFilterContainer = styled.div`
