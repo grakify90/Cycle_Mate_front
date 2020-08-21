@@ -74,6 +74,6 @@ To make my work as transparent and correctable as possible, I:
 - Make a new branch for each new feature and name them accordingly
 
 ## Backend repository
-Go to [backend repo](https://github.com/grakify90/Portfolio_project_backend)
+Go to [backend repo](https://github.com/grakify90/Cycle_Mate_back)
 
 
