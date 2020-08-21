@@ -33,6 +33,7 @@ The goal was, in two weeks time, to:
 
 ## Technologies used
 ✨ _Newly explored technology_
+
 **Backend**
 - Postgres Database
 - Sequelize (✨Many-to-many & ✨Multiple associations)
