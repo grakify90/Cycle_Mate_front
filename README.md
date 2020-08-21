@@ -1,6 +1,6 @@
 # Cycle Mate 🚴 Enjoying our love for cycling together 
 
-# [🚀_Check out the deployed version!_](https://cyclemate.netlify.app/)
+[🚀_Check out the deployed version!_](https://cyclemate.netlify.app/)
 
 ## What Cycle Mate is about
 
