@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import MessageBox from "../components/MessageBox";
 import { signUp } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
+import moment from "moment";
 
 import { Container } from "../styles/Container";
 import { TitleBlock } from "../styles/TitleBlock";
@@ -23,7 +24,6 @@ export default function SignUp() {
   }, [token, history]);
 
   const [message, setMessage] = useState("");
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -35,8 +35,9 @@ export default function SignUp() {
   function submitForm(event) {
     event.preventDefault();
 
+    const date = moment(dateOfBirth).format("DD-MM-YYYY");
     dispatch(
-      signUp(firstName, lastName, email, password, aboutMe, gender, dateOfBirth)
+      signUp(firstName, lastName, email, password, aboutMe, gender, date)
     );
 
     setMessage(<MessageBox message="Welcome to Cycle Mate!" />);

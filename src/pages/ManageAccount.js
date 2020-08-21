@@ -4,6 +4,7 @@ import MessageBox from "../components/MessageBox";
 import { changePersonalData } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
 import { selectAppLoading } from "../store/appState/selectors";
+import moment from "moment";
 
 import { TitleBlock } from "../styles/TitleBlock";
 import { Button } from "../styles/Button";
@@ -28,9 +29,9 @@ export default function ManageAccount() {
   function submitForm(event) {
     event.preventDefault();
 
-    dispatch(
-      changePersonalData(firstName, lastName, aboutMe, gender, dateOfBirth)
-    );
+    const date = moment(dateOfBirth).format("DD-MM-YYYY");
+
+    dispatch(changePersonalData(firstName, lastName, aboutMe, gender, date));
 
     setMessage(
       <MessageBox message="Successfully changed your personal info!" />

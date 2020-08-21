@@ -1,4 +1,5 @@
 import {
+  RESET_TRIPS,
   FETCHED_TRIPS,
   FETCHED_PERSONAL_TRIPS,
   START_LOADING,
@@ -37,6 +38,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    }
+    case RESET_TRIPS: {
+      return {
+        ...state,
+        items: [],
+        loading: false,
       };
     }
     default:
