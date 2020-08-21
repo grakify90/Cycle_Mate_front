@@ -9,6 +9,10 @@ export const InnerDetailContainer = styled.div`
   border-radius: 5px;
   padding: 2vw;
 
+  h1 {
+    text-align: center;
+  }
+
   @media screen and (max-width: 600px) {
     padding: 6vw;
   }
