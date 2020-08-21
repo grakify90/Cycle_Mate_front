@@ -1,6 +1,7 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
 
+export const RESET_TRIPS = "RESET_TRIPS";
 export const FETCHED_TRIPS = "FETCHED_TRIPS";
 export const FETCHED_PERSONAL_TRIPS = "FETCHED_PERSONAL_TRIPS";
 export const START_LOADING = "START_LOADING";
@@ -14,6 +15,12 @@ const compare = (a, b) => {
     return 1;
   }
   return 0;
+};
+
+export const resetTripsState = () => {
+  return {
+    type: RESET_TRIPS,
+  };
 };
 
 export const fetchAllTrips = (trips) => {

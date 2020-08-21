@@ -31,7 +31,7 @@ export const changePersonalData = (
   lastName,
   aboutMe,
   gender,
-  dateOfBirth
+  date
 ) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
@@ -45,7 +45,7 @@ export const changePersonalData = (
           lastName,
           aboutMe,
           gender,
-          dateOfBirth,
+          dateOfBirth: date,
         },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -73,7 +73,7 @@ export const signUp = (
   password,
   aboutMe,
   gender,
-  dateOfBirth
+  date
 ) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
@@ -85,7 +85,7 @@ export const signUp = (
         password,
         aboutMe,
         gender,
-        dateOfBirth,
+        dateOfBirth: date,
       });
 
       dispatch(loginSuccess(response.data));

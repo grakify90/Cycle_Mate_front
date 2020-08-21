@@ -3,7 +3,7 @@ import moment from "moment";
 import MessageBox from "../components/MessageBox";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addTrip } from "../store/trips/actions";
+import { addTrip, resetTripsState } from "../store/trips/actions";
 import { selectToken } from "../store/user/selectors";
 
 import { TitleBlock } from "../styles/TitleBlock";
@@ -23,11 +23,6 @@ export default function AddTrip() {
   }, [dispatch, token, history]);
 
   const [message, setMessage] = useState("");
-
-  //Refresh page so that pagination on /agenda will start again and the new trip will be sorted by date correctly
-  function refreshPage() {
-    window.location.reload(false);
-  }
 
   const [trip, setTrip] = useState({
     title: "",
@@ -68,7 +63,9 @@ export default function AddTrip() {
     );
 
     setMessage(<MessageBox message="Successfully added new trip!" />);
-    refreshPage();
+    //Reset redux state so that pagination on /agenda will start again and the new trip will be sorted by date correctly
+    dispatch(resetTripsState());
+
     setTrip({
       title: "",
       locationCity: "",
