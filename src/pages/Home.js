@@ -34,3 +34,4 @@ export default function Home() {
 // https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/into-the-sunset-royalty-free-image-1587501795.jpg?crop=0.590xw:1.00xh;0.131xw,0&resize=980:*
 // https://www.bikemagazine.com.br/wp-content/uploads/2012/02/primeira-bike1.jpg
 // https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2015/08/GettyImages-168831316-650x428.jpg
+// https://i.pinimg.com/originals/6d/10/40/6d10406122213c72b2edd0cf6a985b51.jpg
