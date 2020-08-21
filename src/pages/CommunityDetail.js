@@ -87,9 +87,9 @@ export default function CommunityDetail() {
   return (
     <div>
       {" "}
-      <h1>{topicData.item.title}</h1>{" "}
       <DetailContainer>
         <InnerDetailContainer primary>
+          <h1>{topicData.item.title}</h1>{" "}
           <p>
             <TitleBlock primary>Topic starter</TitleBlock>
             <br /> {topicData.topicstarter.firstName}{" "}

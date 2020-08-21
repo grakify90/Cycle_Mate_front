@@ -79,9 +79,9 @@ export default function TripsDetail() {
 
   return (
     <div>
-      <h1>{tripData.item.title}</h1>{" "}
       <DetailContainer>
         <InnerDetailContainer>
+          <h1>{tripData.item.title}</h1>{" "}
           <div>
             <TitleBlock>Location</TitleBlock>
             <br />{" "}
