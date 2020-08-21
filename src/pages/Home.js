@@ -1,29 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Container } from "../styles/Container";
+import color from "../styles/_colors";
+import { HomeContainer } from "./Home.Styles";
 
 export default function Home() {
   return (
-    <Container>
-      <h2>Welcome to Cycle Mate!</h2>
+    <HomeContainer>
+      <h1>Welcome to Cycle Mate!</h1>
       <p>
         Cycle Mate is the perfect platform for cycle lovers who enjoy practising
-        their favourite sport together with other people. Ever wanted to
-        organize a cycle trip and make it possible for anyone to join, just for
-        the fun of riding together? Cycle Mate is your new best mate! Organize
-        cycle trips, join other people's trips, take part in the Cycle Mate
-        community and ask questions or share your experiences on the message
-        board... Anything to spread the love for cycling!
+        their favourite sport together with other people.{" "}
       </p>
       <p>
-        Sign up <Link to="/signup">here</Link>!
+        Ever wanted to organize a cycle trip and make it possible for anyone to
+        join, just for the fun of riding together? Cycle Mate is your new best
+        mate!
+      </p>{" "}
+      <p>
+        {" "}
+        Organize cycle trips, join other people's trips, take part in the Cycle
+        Mate community and ask questions or share your experiences on the
+        message board... Anything to spread the love for cycling!
+      </p>
+      <p>
+        Sign up{" "}
+        <Link
+          to="/signup"
+          style={{ color: `${color.darklila}`, fontWeight: "bold" }}
+        >
+          here
+        </Link>
+        !
       </p>
       <img
         src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/05/11/18/cycling-guide.jpg?width=990"
         alt="Cycle Mate"
       />
-    </Container>
+    </HomeContainer>
   );
 }
 
