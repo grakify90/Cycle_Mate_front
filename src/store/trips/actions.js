@@ -52,7 +52,6 @@ export function startLoading() {
 
 export function addTrip(newTrip) {
   return async function thunk(dispatch) {
-    console.log(newTrip);
     try {
       const {
         title,
