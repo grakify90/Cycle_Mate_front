@@ -21,7 +21,7 @@ Cycle Mate is the perfect platform for cycle lovers who enjoy practising their f
 - [Backend repository](#Backend-repository)
 
 ## A little preview
-Todo: embed a nice GIF with a short preview of Cycle Mate
+![Cycle Mate preview](https://github.com/grakify90/Cycle_Mate_front/blob/development/cyclemate.gif)
 
 ## Goals for this project
 Cycle Mate is my portfolio project for the Codaisseur Academy, a bootcamp to become a fullstack developer. 
