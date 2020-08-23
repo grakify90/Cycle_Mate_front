@@ -2,6 +2,7 @@ import { LOG_OUT, LOGIN_SUCCESS, TOKEN_STILL_VALID } from "./actions";
 
 const initialState = {
   token: localStorage.getItem("token"),
+  id: null,
   firstName: null,
   lastName: null,
   email: null,
@@ -15,6 +16,7 @@ export default (state = initialState, action) => {
     case LOGIN_SUCCESS:
       const {
         token,
+        id,
         firstName,
         lastName,
         email,
@@ -26,6 +28,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         token: token,
+        id: id,
         firstName: firstName,
         lastName: lastName,
         email: email,
