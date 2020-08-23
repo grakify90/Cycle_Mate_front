@@ -1,6 +1,7 @@
 # Cycle Mate 🚴 Enjoying our love for cycling together 
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/25ecb352-353b-4667-b638-1a52c733d033/deploy-status)](https://app.netlify.com/sites/cyclemate/deploys)
+
 [🚀Check out the deployed version!🚀](https://cyclemate.netlify.app/)
 
 ## What Cycle Mate is about
