@@ -52,6 +52,13 @@ export const changePersonalData = (
         }
       );
       dispatch(loginSuccess(response.data));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          true,
+          "Successfully changed personal information"
+        )
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -89,7 +96,13 @@ export const signUp = (
       });
 
       dispatch(loginSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", true, "account created"));
+      dispatch(
+        showMessageWithTimeout(
+          "success",
+          true,
+          "Successfully created new account. Welcome to Cycle Mate!"
+        )
+      );
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
@@ -113,7 +126,7 @@ export const login = (email, password) => {
         password,
       });
       dispatch(loginSuccess(response.data));
-      dispatch(showMessageWithTimeout("success", false, "welcome back!", 1500));
+      dispatch(showMessageWithTimeout("success", false, "Welcome back!", 1500));
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response) {
