@@ -29,38 +29,43 @@ export default function CommunityDetail() {
   }, [dispatch, id]);
 
   const createReply = async () => {
-    try {
-      //Uploading local file to Firebase and enpoint and receiving URL back
-      const uploadTask = storage
-        .ref(`images/${reply.imageUrl.name}`)
-        .put(reply.imageUrl);
+    if (reply.imageUrl) {
+      try {
+        //Uploading local file to Firebase and enpoint and receiving URL back
+        const uploadTask = storage
+          .ref(`images/${reply.imageUrl.name}`)
+          .put(reply.imageUrl);
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress = Math.round(
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
-          setProgress(progress);
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          storage
-            .ref("images")
-            .child(reply.imageUrl.name)
-            .getDownloadURL()
-            .then((url) => {
-              dispatch(addReply(id, { ...reply, imageUrl: url }));
-            })
-            .then(() => {
-              setReply({ content: "", imageUrl: "" });
-            });
-        }
-      );
-    } catch (error) {
-      console.log(error.message);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress = Math.round(
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            );
+            setProgress(progress);
+          },
+          (error) => {
+            console.log(error);
+          },
+          () => {
+            storage
+              .ref("images")
+              .child(reply.imageUrl.name)
+              .getDownloadURL()
+              .then((url) => {
+                dispatch(addReply(id, { ...reply, imageUrl: url }));
+              })
+              .then(() => {
+                setReply({ content: "", imageUrl: "" });
+              });
+          }
+        );
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      dispatch(addReply(id, { ...reply, imageUrl: "" }));
+      setReply({ content: "", imageUrl: "" });
     }
   };
 

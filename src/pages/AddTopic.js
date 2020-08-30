@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { storage } from "../firebase";
-import MessageBox from "../components/MessageBox";
 import { addTopic } from "../store/topics/actions";
 import { selectToken } from "../store/user/selectors";
 
@@ -23,36 +22,38 @@ export default function AddTopic() {
   }, [dispatch, token, history]);
 
   const [topic, setTopic] = useState({ title: "", content: "", imageUrl: "" });
-  const [message, setMessage] = useState("");
 
   async function submitForm(event) {
     event.preventDefault();
-    try {
-      //Uploading local file to Firebase and enpoint and receiving URL back
-      const uploadTask = storage
-        .ref(`images/${topic.imageUrl.name}`)
-        .put(topic.imageUrl);
+    if (topic.image) {
+      try {
+        //Uploading local file to Firebase and enpoint and receiving URL back
+        const uploadTask = storage
+          .ref(`images/${topic.imageUrl.name}`)
+          .put(topic.imageUrl);
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          storage
-            .ref("images")
-            .child(topic.imageUrl.name)
-            .getDownloadURL()
-            .then((url) => {
-              dispatch(addTopic({ ...topic, imageUrl: url }));
-              setMessage(<MessageBox message="Successfully posted topic!" />);
-              setTopic({ title: "", content: "", imageUrl: "" });
-            });
-        }
-      );
-    } catch (error) {
-      console.log(error.message);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {},
+          (error) => {
+            console.log(error);
+          },
+          () => {
+            storage
+              .ref("images")
+              .child(topic.imageUrl.name)
+              .getDownloadURL()
+              .then((url) => {
+                dispatch(addTopic({ ...topic, imageUrl: url }));
+                setTopic({ title: "", content: "", imageUrl: "" });
+              });
+          }
+        );
+      } catch (error) {
+        console.log(error.message);
+      }
+    } else {
+      dispatch(addTopic({ ...topic, imageUrl: "" }));
     }
   }
 
@@ -61,7 +62,6 @@ export default function AddTopic() {
       <form>
         <h1>Add a topic</h1>
         <FormContainer>
-          <div>{message}</div>
           <InnerFormContainer>
             <TitleBlock>Title</TitleBlock>
             <input

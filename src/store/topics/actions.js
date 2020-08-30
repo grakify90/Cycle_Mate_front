@@ -1,5 +1,6 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
+import { showMessageWithTimeout, setMessage } from "../appState/actions";
 
 export const FETCHED_TOPICS = "FETCHED_TOPICS";
 export const START_LOADING = "START_LOADING";
@@ -48,9 +49,11 @@ export function addTopic(newTopic) {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      dispatch(showMessageWithTimeout("success", true, "Added new topic"));
       dispatch(addNewTopic(data.data));
     } catch (error) {
       console.log(error.message);
+      dispatch(setMessage("danger", true, error.message));
     }
   };
 }

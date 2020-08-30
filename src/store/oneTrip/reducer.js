@@ -39,11 +39,9 @@ export default (state = initialState, action) => {
       };
     }
     case DELETE_PARTICIPANT: {
-      console.log(action.payload);
       const newArray = state.participants.filter((participant) => {
         return participant.id !== action.payload.id;
       });
-      console.log(newArray);
 
       return {
         ...state,

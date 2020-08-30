@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import MessageBox from "../components/MessageBox";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addTrip, resetTripsState } from "../store/trips/actions";
@@ -21,8 +20,6 @@ export default function AddTrip() {
       history.push("/");
     }
   }, [dispatch, token, history]);
-
-  const [message, setMessage] = useState("");
 
   const [trip, setTrip] = useState({
     title: "",
@@ -62,7 +59,6 @@ export default function AddTrip() {
       })
     );
 
-    setMessage(<MessageBox message="Successfully added new trip!" />);
     //Reset redux state so that pagination on /agenda will start again and the new trip will be sorted by date correctly
     dispatch(resetTripsState());
 
@@ -87,7 +83,6 @@ export default function AddTrip() {
     <div>
       <form>
         <h1>Organize a trip!</h1>
-        <div>{message}</div>
         <FormContainer>
           <InnerFormContainer>
             <TitleBlock>Title</TitleBlock>

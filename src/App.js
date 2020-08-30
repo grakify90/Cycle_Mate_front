@@ -4,6 +4,7 @@ import { Normalize } from "styled-normalize";
 import GlobalStyle from "./styles/_GlobalStyle";
 
 import NavBar from "./components/NavBar";
+import MessageBox from "./components/MessageBox";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -34,6 +35,7 @@ function App() {
       <Normalize />
       <GlobalStyle />
       <NavBar />
+      <MessageBox />
       {isLoading ? <h1>Loading...</h1> : null}
       <Switch>
         <Route exact path="/" component={Home} />

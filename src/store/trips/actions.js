@@ -1,5 +1,6 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
+import { showMessageWithTimeout, setMessage } from "../appState/actions";
 
 export const RESET_TRIPS = "RESET_TRIPS";
 export const FETCHED_TRIPS = "FETCHED_TRIPS";
@@ -91,9 +92,13 @@ export function addTrip(newTrip) {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
+      dispatch(
+        showMessageWithTimeout("success", true, "Successfully added trip")
+      );
       dispatch(addNewTrip(data.data));
     } catch (error) {
       console.log(error.message);
+      dispatch(setMessage("danger", true, error.message));
     }
   };
 }

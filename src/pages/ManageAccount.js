@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MessageBox from "../components/MessageBox";
 import { changePersonalData } from "../store/user/actions";
 import { selectUser } from "../store/user/selectors";
 import { selectAppLoading } from "../store/appState/selectors";
@@ -16,9 +15,6 @@ export default function ManageAccount() {
   const isLoading = useSelector(selectAppLoading);
   const user = useSelector(selectUser);
 
-  //success message when user submits changes
-  const [message, setMessage] = useState("");
-
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   // const [password, setPassword] = useState(user.password);
@@ -32,10 +28,6 @@ export default function ManageAccount() {
     const date = moment(dateOfBirth).format("DD-MM-YYYY");
 
     dispatch(changePersonalData(firstName, lastName, aboutMe, gender, date));
-
-    setMessage(
-      <MessageBox message="Successfully changed your personal info!" />
-    );
   }
 
   if (isLoading) {
@@ -47,7 +39,6 @@ export default function ManageAccount() {
       <form>
         <h1>Manage my account</h1>
         <FormContainer>
-          <div>{message}</div>
           <InnerFormContainer>
             <TitleBlock>First name</TitleBlock>
             <input
